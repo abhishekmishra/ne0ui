@@ -47,6 +47,14 @@ export class NuUIComponent extends NuRect {
             this.setAbsolutePosition(l, t);
         }
     }
+
+    on(event, handler) {
+        this.elem.addEventListener(event, handler);
+    }
+
+    removeEventListener(event, handler) {
+        this.elem.removeEventListener(event, handler);
+    }
 }
 
 export class NuButton extends NuUIComponent {

@@ -31,7 +31,7 @@ export class NuRect {
         this.setSizeHint(w, h);
 
         //default event handlers
-        this.onEvent('nu_resize', (evt) => { this.postresize(evt); });
+        this.onRectEvent('nu_resize', (evt) => { this.postresize(evt); });
     }
 
     getParent() {
@@ -75,11 +75,11 @@ export class NuRect {
         });
     }
 
-    onEvent(event, handler) {
+    onRectEvent(event, handler) {
         this.div.addEventListener(event, handler);
     }
 
-    offEvent(event, handler) {
+    offRectEvent(event, handler) {
         this.div.removeEventListener(event, handler);
     }
 
