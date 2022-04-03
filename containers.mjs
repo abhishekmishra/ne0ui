@@ -20,7 +20,7 @@ export class NuRect {
             throw ("width and height should be size hint instances!");
         }
 
-        this.parentRect = null;       
+        this.parentRect = null;
         this.div = document.createElement('div');
         this.divCompStyle = window.getComputedStyle(this.div);
         this.setStyle('margin', "0px");
@@ -29,6 +29,9 @@ export class NuRect {
         this.div.style.setProperty('border', '0px');
 
         this.setSizeHint(w, h);
+
+        //default event handlers
+        this.onEvent('nu_resize', (evt) => { this.postresize(evt); });
     }
 
     getParent() {
@@ -65,10 +68,22 @@ export class NuRect {
         } else {
             console.error(`cannot resize, new size[${w}, ${h}] out of min bounds[${this.getWidthHint().min}, ${this.getHeightHint().min}]`);
         }
-        this.postresize();
+
+        // dispatch the nu_resize event
+        this.div.dispatchEvent(new CustomEvent('nu_resize'), {
+            rect: this
+        });
     }
 
-    postresize() {
+    onEvent(event, handler) {
+        this.div.addEventListener(event, handler);
+    }
+
+    offEvent(event, handler) {
+        this.div.removeEventListener(event, handler);
+    }
+
+    postresize(evt) {
         // console.log(`New dim is ${this.dimHint}`);
     }
 
@@ -288,7 +303,7 @@ class _DirectionLayout extends NuRect {
         return ((minUsedLength + rect.getHeightHint().min) < this.getMaxLength());
     }
 
-    postresize() {
+    postresize(evt) {
         this.allocRects();
 
         this.broadcastBreadth();
