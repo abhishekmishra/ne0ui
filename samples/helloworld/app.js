@@ -1,4 +1,4 @@
-import { NuTop, NuSingleLineText, NuSizeHint } from "../../index.mjs";
+import { NuTop, NuSingleLineText } from "../../index.mjs";
 
 // create the toplevel window
 var top = new NuTop();
