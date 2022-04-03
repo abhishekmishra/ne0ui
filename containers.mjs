@@ -388,10 +388,10 @@ export class NuColumnContainer extends _DirectionLayout {
 
     broadcastBreadth() {
         this.beginItems.forEach((item) => {
-            item.resize(this.getWidth(), item.getHeight());
+            item.resize(item.getWidthHint().clamp(this.getWidth()), item.getHeight());
         });
         this.endItems.forEach((item) => {
-            item.resize(this.getWidth(), item.getHeight());
+            item.resize(item.getWidthHint().clamp(this.getWidth()), item.getHeight());
         });
     }
 }
@@ -440,10 +440,10 @@ export class NuRowContainer extends _DirectionLayout {
 
     broadcastBreadth() {
         this.beginItems.forEach((item) => {
-            item.resize(item.getWidth(), this.getHeight());
+            item.resize(item.getWidth(), item.getHeightHint().clamp(this.getHeight()));
         });
         this.endItems.forEach((item) => {
-            item.resize(item.getWidth(), this.getHeight());
+            item.resize(item.getWidth(), item.getHeightHint().clamp(this.getHeight()));
         });
     }
 }
