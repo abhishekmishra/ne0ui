@@ -30,6 +30,11 @@ export class NuUIComponent extends NuRect {
         }
     }
 
+    setSize(w, h) {
+        super.setSize(w, h);
+        this.postresize();
+    }
+
     postresize() {
         this.setElemStyle('width', this.getWidth() + 'px');
         this.setElemStyle('height', this.getHeight() + 'px');
