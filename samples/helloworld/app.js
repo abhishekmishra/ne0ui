@@ -13,6 +13,6 @@ text.justify('center');
 // center the text element in parent
 // and keep centered when parent is resized
 text.centerParent();
-text.getParent().onEvent('nu_resize', (evt) => {
+text.getParent().onRectEvent('nu_resize', (evt) => {
     text.centerParent();
 });
