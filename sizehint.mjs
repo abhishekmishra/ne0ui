@@ -35,7 +35,7 @@ export class NuSizeHint {
      * @returns {Boolean} check if the input value is a valid size for the range.
      */
     ok(val) {
-        if (val >= this.min && this.max > val) {
+        if (val >= this.min && this.max >= val) {
             return true;
         } else {
             return false;
