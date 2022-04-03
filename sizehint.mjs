@@ -29,3 +29,15 @@
         }
     }
 }
+
+export function getSizeHint(val) {
+    var hint = null;
+    if (typeof val == 'number') {
+        hint = new NuSizeHint(val);
+    } else if (val instanceof NuSizeHint) {
+        hint = val;
+    } else if (!isNaN(parseInt(val))) {
+        hint = new NuSizeHint(parseInt(val));
+    }
+    return hint;
+}

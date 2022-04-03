@@ -1,17 +1,5 @@
-import { NuSizeHint } from "./sizehint.mjs";
+import { NuSizeHint, getSizeHint } from "./sizehint.mjs";
 import { allocateSizes, sumArr } from "./allocutils.mjs";
-
-function getSizeHint(val) {
-    var hint = null;
-    if (typeof val == 'number') {
-        hint = new NuSizeHint(val);
-    } else if (val instanceof NuSizeHint) {
-        hint = val;
-    } else if (!isNaN(parseInt(val))) {
-        hint = new NuSizeHint(parseInt(val));
-    }
-    return hint;
-}
 
 /** 
  * The base container class in the NE0UI API.
