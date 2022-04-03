@@ -3,7 +3,7 @@ const assert = chai.assert;
 const expect = chai.expect;
 const should = chai.should();
 
-import { allocateSizes, NuSizeHint } from '../rect.mjs';
+import { allocateSizes, NuSizeHint } from '../index.mjs';
 
 describe('DimHint', function() {
   it('create and test ok', function() {

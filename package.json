@@ -2,7 +2,7 @@
   "name": "ne0ui",
   "version": "0.0.1",
   "description": "A UI Frame for browser-based applications.",
-  "main": "index.js",
+  "main": "index.mjs",
   "scripts": {
     "test": "mocha"
   },
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/abhishekmishra/ne0ui.git"
   },
-  "author": "Abhishek Mishra <abhishekmishra.in>",
+  "author": "Abhishek Mishra <abhishekmishra3@gmail.com> (abhishekmishra.in)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/abhishekmishra/ne0ui/issues"
