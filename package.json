@@ -4,7 +4,8 @@
   "description": "A UI Frame for browser-based applications.",
   "main": "index.mjs",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "doc": "jsdoc -c jsdoc.conf index.mjs"
   },
   "repository": {
     "type": "git",
