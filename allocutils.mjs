@@ -1,4 +1,4 @@
-function sumArr(arr) {
+export function sumArr(arr) {
     return arr.reduce((prev, current) => prev + current, 0);
 }
 

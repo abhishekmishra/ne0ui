@@ -1,5 +1,5 @@
 import { NuSizeHint } from "./sizehint.mjs";
-import { allocateSizes } from "./allocutils.mjs";
+import { allocateSizes, sumArr } from "./allocutils.mjs";
 
 function getSizeHint(val) {
     var hint = null;
