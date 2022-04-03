@@ -22,6 +22,7 @@ export class NuRect {
     dimHint;
     div;
     divCompStyle;
+    parentRect;
 
     constructor(w, h) {
         w = getSizeHint(w);
@@ -31,15 +32,23 @@ export class NuRect {
             throw ("width and height should be size hint instances!");
         }
 
+        this.parentRect = null;       
         this.div = document.createElement('div');
         this.divCompStyle = window.getComputedStyle(this.div);
-
-        this.setSizeHint(w, h);
         this.setStyle('margin', "0px");
         this.setStyle('padding', "0px");
-
         // setStyle does not allow setting border
         this.div.style.setProperty('border', '0px');
+
+        this.setSizeHint(w, h);
+    }
+
+    getParent() {
+        return this.parentRect;
+    }
+
+    setParent(pRect) {
+        this.parentRect = pRect;
     }
 
     setSizeHint(w, h) {
@@ -152,10 +161,12 @@ export class NuRect {
 
     appendRect(rect) {
         this.appendElem(rect.div);
+        rect.setParent(this);
     }
 
     removeRect(rect) {
         this.removeElem(rect.div);
+        rect.setParent(null);
     }
 
     appendElem(elem) {
