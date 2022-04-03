@@ -1,12 +1,32 @@
 import { NuSizeHint } from "./sizehint.mjs";
 import { allocateSizes } from "./allocutils.mjs";
 
+function getSizeHint(val) {
+    var hint = null;
+    if (typeof val == 'number') {
+        hint = new NuSizeHint(val);
+    } else if (val instanceof NuSizeHint) {
+        hint = val;
+    } else if (!isNaN(parseInt(val))) {
+        hint = new NuSizeHint(parseInt(val));
+    }
+    return hint;
+}
+
+/** 
+ * The base container class in the NE0UI API.
+ * Represents an empty rectangular region on the screen,
+ * and is backed by an HTML div.
+ */
 export class NuRect {
     dimHint;
     div;
     divCompStyle;
 
     constructor(w, h) {
+        w = getSizeHint(w);
+        h = getSizeHint(h);
+
         if (!(w instanceof NuSizeHint) || !(h instanceof NuSizeHint)) {
             throw ("width and height should be size hint instances!");
         }
