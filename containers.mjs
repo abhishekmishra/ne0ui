@@ -182,7 +182,6 @@ export class NuRect {
 
 }
 
-
 class _DirectionLayout extends NuRect {
     beginItems;
     endItems;
@@ -191,7 +190,6 @@ class _DirectionLayout extends NuRect {
         super(w, h);
         this.beginItems = [];
         this.endItems = [];
-        this.setStyle('background-color', 'blue');
         this.setStyle('overflow', 'hidden');
     }
 

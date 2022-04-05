@@ -1,5 +1,3 @@
-import {NuSizeHint} from './sizehint.mjs';
-
 export * from './sizehint.mjs';
 export * from './allocutils.mjs';
 export * from './containers.mjs';
