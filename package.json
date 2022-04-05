@@ -5,7 +5,7 @@
   "main": "index.mjs",
   "scripts": {
     "test": "mocha",
-    "doc": "jsdoc -c jsdoc.conf index.mjs"
+    "doc": "jsdoc -c jsdoc.conf ."
   },
   "repository": {
     "type": "git",
