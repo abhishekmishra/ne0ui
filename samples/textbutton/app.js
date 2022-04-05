@@ -7,7 +7,7 @@ import { NuButton, NuUICompConfig } from "../../uicomp.mjs";
 var top = new NuTop();
 
 var row = new NuRowContainer(250, 25);
-row.setStyle('background-color', 'black');
+row.setStyle('background-color', 'darkgray');
 
 // create and add a single line text control to the toplevel
 var text = new NuSingleLineText({
@@ -15,15 +15,16 @@ var text = new NuSingleLineText({
     h: 25,
     text: 'Here is some text: ',
     justify: 'right',
-    bg: 'black',
-    fg: 'white',
+    bg: 'darkgray',
+    fg: 'black',
+    margin: '0px 5px 0px 0px',
 });
 
 var btn = new NuButton({
     w: 100,
     h: 25,
-    margin: '0px 0px 0px 3px',
-    text: 'Click me!'
+    text: 'Click me!',
+    margin: '2px',
 });
 
 top.add(row);

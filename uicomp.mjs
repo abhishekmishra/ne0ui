@@ -142,10 +142,21 @@ export class NuUIComponent extends NuRect {
         this.postresize();
     }
 
-    //TODO: adjust dimensions with margin, padding and border
+    // adjust dimensions with margin, padding and border
+    // see https://stackoverflow.com/a/23270007/9483968
     postresize() {
-        this.setElemStyle('width', this.getWidth() + 'px');
-        this.setElemStyle('height', this.getHeight() + 'px');
+        var style = this.elem.currentStyle || window.getComputedStyle(this.elem);
+
+        var marginW = parseFloat(style.marginLeft) + parseFloat(style.marginRight);
+        var marginH = parseFloat(style.marginTop) + parseFloat(style.marginBottom);
+        var borderW = parseFloat(style.borderLeftWidth) + parseFloat(style.borderRightWidth);
+        var borderH = parseFloat(style.borderTopWidth) + parseFloat(style.borderBottomWidth);
+        var paddingW = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
+        var paddingH = parseFloat(style.paddingTop) + parseFloat(style.paddingBottom);
+        var widthExcess = marginW;
+        var heightExcess = marginH;
+        this.setElemStyle('width', (this.getWidth() - widthExcess) + 'px');
+        this.setElemStyle('height', (this.getHeight() - heightExcess) + 'px');
     }
 
     centerParent() {
