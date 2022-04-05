@@ -4,11 +4,15 @@ import { NuTop, NuSingleLineText } from "../../index.mjs";
 var top = new NuTop();
 
 // create and add a single line text control to the toplevel
-var text = new NuSingleLineText(200, '50', 'HELLO WORLD!');
+var text = new NuSingleLineText({
+    w: 200,
+    h: '50',
+    text: 'HELLO WORLD!',
+    justify: 'center'
+});
 top.appendRect(text);
 
 // center justify the text in the text control
-text.justify('center');
 
 // center the text element in parent
 // and keep centered when parent is resized
