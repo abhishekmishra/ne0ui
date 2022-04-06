@@ -49,10 +49,13 @@ export class NuUICompConfig {
 
     get(k) {
         if (this.has(k)) {
-            return this.config.get(k);
-        } else {
-            return this.defaults.get(k);
+            if (this.config.has(k)) {
+                return this.config.get(k);
+            } else {
+                return this.defaults.get(k);
+            }
         }
+        return null;
     }
 
     has(k) {
@@ -113,8 +116,9 @@ export class NuUIComponent extends NuRect {
 
     setDefaultConfigs() {
         this.uicfg.setDefaults({
-            margin: '0',
-            padding: '0'
+            margin: '0px',
+            border: '0px',
+            padding: '0px'
         });
     }
 
@@ -222,21 +226,24 @@ export class NuPanel extends NuUIComponent {
     constructor(config) {
         super('div', config);
         const orientation = this.getCfg('orientation');
-        console.log(`${this.getInnerWidth()}, ${this.getInnerHeight()}`);
-        if(orientation === 'horizontal') {
+        if (orientation === 'horizontal') {
             this.layout = new NuRowContainer(this.getInnerWidth(), this.getInnerHeight());
-        } else if(orientation == 'vertical') {
+        } else if (orientation == 'vertical') {
             this.layout = new NuColumnContainer(this.getInnerWidth(), this.getInnerHeight());
         } else {
             throw 'orientation not supported -> ' + orientation;
         }
-        console.log(this.layout);
         this.layout.setStyle('position', 'relative');
         this.elem.appendChild(this.layout.div);
     }
 
-    addComp(uicomp, side='begin') {
+    addComp(uicomp, side = 'begin') {
         this.layout.add(uicomp, side);
+    }
+
+    postresize() {
+        super.postresize();
+        this.layout.resize(this.getInnerWidth(), this.getInnerHeight());
     }
 }
 
