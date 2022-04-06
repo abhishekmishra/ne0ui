@@ -1,32 +1,30 @@
 import { NuTop, NuSingleLineText } from "../../index.mjs";
 import { NuSizeHint } from "../../sizehint.mjs";
-import { NuPanel } from "../../uicomp.mjs";
+import { NuColumnPanel, NuRowPanel } from "../../uicomp.mjs";
 
 // create the toplevel window
 var top = new NuTop();
 
 // create a new panel
-var panel = new NuPanel({
+var panel = new NuColumnPanel({
     'w': new NuSizeHint(600, 600, Infinity),
     'h': 400,
     'margin': '10px',
     'border': '2px solid black',
     'padding': '5px',
     'bg': 'azure',
-    'orientation': 'vertical'
 });
 
 // add panel to top
 top.add(panel);
 
 // create a row panel
-var rowPanel = new NuPanel({
+var rowPanel = new NuRowPanel({
     'w': new NuSizeHint(100, 50, Infinity),
     'h': 40,
     'bg': 'whitesmoke',
     'border': '1px solid blue',
     'margin': '2px',
-    'orientation': 'horizontal'
 });
 panel.addComp(rowPanel);
 

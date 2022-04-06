@@ -249,6 +249,32 @@ export class NuPanel extends NuUIComponent {
     }
 }
 
+export class NuRowPanel extends NuPanel {
+    constructor(config) {
+        if (config instanceof NuUICompConfig) {
+            config.set('orientation', 'horizontal');
+        } else if (config instanceof Object) {
+            config.orientation = 'horizontal';
+        } else {
+            throw "no config found";
+        }
+        super(config);
+    }
+}
+
+export class NuColumnPanel extends NuPanel {
+    constructor(config) {
+        if (config instanceof NuUICompConfig) {
+            config.set('orientation', 'vertical');
+        } else if (config instanceof Object) {
+            config.orientation = 'vertical';
+        } else {
+            throw "no config found";
+        }
+        super(config);
+    }
+}
+
 /**
  * Create a standard html button, with text and icon both optional
  */
