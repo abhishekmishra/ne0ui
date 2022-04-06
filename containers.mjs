@@ -12,6 +12,8 @@ export class NuRect {
     divCompStyle;
     parentRect;
 
+    static rectCount = 0;
+
     constructor(w, h) {
         w = getSizeHint(w);
         h = getSizeHint(h);
@@ -22,6 +24,8 @@ export class NuRect {
 
         this.parentRect = null;
         this.div = document.createElement('div');
+        this.div.id = `${NuRect.nextId()}@${this.constructor.name}`;
+        // console.log(`created new id ${this.div.id}`);
         this.divCompStyle = window.getComputedStyle(this.div);
         this.setStyle('margin', "0px");
         this.setStyle('padding', "0px");
@@ -32,6 +36,11 @@ export class NuRect {
 
         //default event handlers
         this.onRectEvent('nu_resize', (evt) => { this.postresize(evt); });
+    }
+
+    static nextId() {
+        this.rectCount += 1;
+        return this.rectCount;
     }
 
     getParent() {

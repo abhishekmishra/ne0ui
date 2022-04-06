@@ -100,6 +100,8 @@ export class NuUIComponent extends NuRect {
             throw "Cannot create html element from e.";
         }
 
+        this.elem.id = `${NuRect.nextId()}@${this.constructor.name}_elem`;
+
         //set the config object        
         this.uicfg = cfg;
 
