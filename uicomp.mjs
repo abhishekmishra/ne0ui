@@ -1,4 +1,4 @@
-import { NuRect } from './containers.mjs';
+import { NuColumnContainer, NuRect, NuRowContainer } from './containers.mjs';
 
 /**
  * Config class for UI components which
@@ -89,15 +89,19 @@ export class NuUIComponent extends NuRect {
         super(cfg.get('w'), cfg.get('h'));
 
         //init elem object
-        this.setElem(e);
+        if (typeof e === 'string') {
+            this.setElem(document.createElement(e));
+        } else if (e instanceof HTMLElement) {
+            this.setElem(e);
+        } else {
+            throw "Cannot create html element from e.";
+        }
 
         //set the config object        
         this.uicfg = cfg;
 
         //set the default configurations in the cfg object
         this.setDefaultConfigs();
-
-        console.log(this.uicfg);
 
         //apply the configurations
         this.applyConfig();
@@ -159,6 +163,23 @@ export class NuUIComponent extends NuRect {
         this.setElemStyle('height', (this.getHeight() - heightExcess) + 'px');
     }
 
+    getInnerWidth() {
+        var style = this.elem.style;
+        var marginW = parseFloat(style.marginLeft) + parseFloat(style.marginRight);
+        var borderW = parseFloat(style.borderLeftWidth) + parseFloat(style.borderRightWidth);
+        var paddingW = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
+        return this.getWidth() - marginW - borderW - paddingW;
+    }
+
+    getInnerHeight() {
+        var style = this.elem.style;
+        var marginH = parseFloat(style.marginTop) + parseFloat(style.marginBottom);
+        var borderH = parseFloat(style.borderTopWidth) + parseFloat(style.borderBottomWidth);
+        var paddingH = parseFloat(style.paddingTop) + parseFloat(style.paddingBottom);
+
+        return this.getHeight() - marginH - borderH - paddingH;
+    }
+
     centerParent() {
         if (this.parentRect !== null) {
             var l = (this.parentRect.getWidth() / 2) - (this.getWidth() / 2);
@@ -189,10 +210,33 @@ export class NuUIComponent extends NuRect {
     }
 }
 
+/**
+ * The panel class is a container with possible margin, border and padding.
+ * The panel can have a horizontal or a vertical layout, which is
+ * specified at creation. The layout is managed by an internal container
+ * object, which is used when components are added to the panel.
+ */
 export class NuPanel extends NuUIComponent {
     layout;
-    constructor(config) {
 
+    constructor(config) {
+        super('div', config);
+        const orientation = this.getCfg('orientation');
+        console.log(`${this.getInnerWidth()}, ${this.getInnerHeight()}`);
+        if(orientation === 'horizontal') {
+            this.layout = new NuRowContainer(this.getInnerWidth(), this.getInnerHeight());
+        } else if(orientation == 'vertical') {
+            this.layout = new NuColumnContainer(this.getInnerWidth(), this.getInnerHeight());
+        } else {
+            throw 'orientation not supported -> ' + orientation;
+        }
+        console.log(this.layout);
+        this.layout.setStyle('position', 'relative');
+        this.elem.appendChild(this.layout.div);
+    }
+
+    addComp(uicomp, side='begin') {
+        this.layout.add(uicomp, side);
     }
 }
 
