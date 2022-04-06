@@ -25,6 +25,7 @@ var btn = new NuButton({
     h: 25,
     text: 'Click me!',
     margin: '2px',
+    icon: 'bi bi-info-circle'
 });
 
 top.add(row);

@@ -249,6 +249,9 @@ export class NuPanel extends NuUIComponent {
     }
 }
 
+/**
+ * Create a standard html button, with text and icon both optional
+ */
 export class NuButton extends NuUIComponent {
     constructor(config) {
         super(document.createElement('button'), config);
@@ -257,7 +260,19 @@ export class NuButton extends NuUIComponent {
 
     applyConfig() {
         super.applyConfig();
-        this.elem.innerHTML = this.getCfg('text');
+        const icon = this.getCfg('icon');
+        const text = this.getCfg('text');
+        console.log(`icon ${icon}, text ${text}`);
+        this.elem.innerHTML = '';
+        if (icon != null) {
+            this.elem.innerHTML += `<i class="${icon}"></i>`;
+        }
+        if (icon != null && text != null) {
+            this.elem.innerHTML += '&nbsp;';
+        }
+        if (text != null) {
+            this.elem.innerHTML += text;
+        }
     }
 }
 

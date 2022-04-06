@@ -22,5 +22,8 @@
     "js-beautify": "^1.14.2",
     "jsdoc": "^3.6.10",
     "mocha": "^9.2.2"
+  },
+  "dependencies": {
+    "bootstrap-icons": "^1.8.1"
   }
 }
