@@ -7,7 +7,7 @@ var top = new NuTop();
 
 // create a new panel
 var panel = new NuPanel({
-    'w': 600,
+    'w': new NuSizeHint(600, 600, Infinity),
     'h': 400,
     'margin': '10px',
     'border': '2px solid black',
@@ -17,7 +17,7 @@ var panel = new NuPanel({
 });
 
 // add panel to top
-top.appendRect(panel);
+top.add(panel);
 
 // create a row panel
 var rowPanel = new NuPanel({

@@ -163,8 +163,8 @@ export class NuUIComponent extends NuRect {
         var borderH = parseFloat(style.borderTopWidth) + parseFloat(style.borderBottomWidth);
         var paddingW = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
         var paddingH = parseFloat(style.paddingTop) + parseFloat(style.paddingBottom);
-        var widthExcess = marginW;
-        var heightExcess = marginH;
+        var widthExcess = marginW + paddingW + borderW;
+        var heightExcess = marginH + paddingH + borderH;
         this.setElemStyle('width', (this.getWidth() - widthExcess) + 'px');
         this.setElemStyle('height', (this.getHeight() - heightExcess) + 'px');
     }
