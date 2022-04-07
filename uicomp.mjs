@@ -380,7 +380,7 @@ export class NuButton extends NuUIComponent {
 
         const icon = this.getCfg('icon');
         const text = this.getCfg('text');
-        console.log(`icon ${icon}, text ${text}`);
+
         this.elem.innerHTML = '';
         if (icon != null) {
             this.elem.innerHTML += `<i class="${icon}"></i>`;
