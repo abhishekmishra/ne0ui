@@ -112,12 +112,34 @@ export class NuUIComponent extends NuRect {
         this.applyConfig();
 
         // some handlers
+        this.elem.addEventListener('mouseup', (evt) => {
+            this.mouseUp(evt);
+        });
+        this.elem.addEventListener('mousemove', (evt) => {
+            this.mouseMove(evt);
+        });
+        this.elem.addEventListener('mousedown', (evt) => {
+            this.mouseDown(evt);
+        });
+
+        // see https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md
+        // for passive event listeners
+        this.elem.addEventListener('touchstart', (evt) => {
+            this.touchStart(evt);
+        });
+        this.elem.addEventListener('touchmove', (evt) => {
+            this.touchMove(evt);
+        });
+        this.elem.addEventListener('touchend', (evt) => {
+            this.touchEnd(evt);
+        });
+
         this.on('mouseover', (evt) => {
-            this.mouseover();
+            this.mouseOver();
         });
 
         this.on('mouseout', (evt) => {
-            this.mouseout();
+            this.mouseOut();
         });
     }
 
@@ -157,7 +179,7 @@ export class NuUIComponent extends NuRect {
     }
 
     unsetElemStyle(k = null) {
-        if(k !== null) {
+        if (k !== null) {
             this.elem.style.removeProperty(k);
         }
     }
@@ -230,11 +252,35 @@ export class NuUIComponent extends NuRect {
         this.expandY();
     }
 
-    mouseover() {
+    mouseUp() {
         //do nothing
     }
 
-    mouseout() {
+    mouseMove() {
+        //do nothing
+    }
+
+    mouseDown() {
+        //do nothing
+    }
+
+    mouseOver() {
+        //do nothing
+    }
+
+    mouseOut() {
+        //do nothing
+    }
+
+    touchStart() {
+        //do nothing
+    }
+
+    touchMove() {
+        //do nothing
+    }
+
+    touchEnd() {
         //do nothing
     }
 }
@@ -348,11 +394,11 @@ export class NuButton extends NuUIComponent {
         return this.elem.hasAttribute('disabled');
     }
 
-    mouseover() {
+    mouseOver() {
         this.setElemStyle('cursor', 'pointer');
     }
 
-    mouseout() {
+    mouseOut() {
         this.unsetElemStyle('cursor');
     }
 }
