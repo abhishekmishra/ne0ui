@@ -110,6 +110,15 @@ export class NuUIComponent extends NuRect {
 
         //apply the configurations
         this.applyConfig();
+
+        // some handlers
+        this.on('mouseover', (evt) => {
+            this.mouseover();
+        });
+
+        this.on('mouseout', (evt) => {
+            this.mouseout();
+        });
     }
 
     getCfg(k) {
@@ -144,6 +153,12 @@ export class NuUIComponent extends NuRect {
     setElemStyle(k = null, v = null) {
         if (k !== null) {
             this.elem.style.setProperty(k, v);
+        }
+    }
+
+    unsetElemStyle(k = null) {
+        if(k !== null) {
+            this.elem.style.removeProperty(k);
         }
     }
 
@@ -213,6 +228,14 @@ export class NuUIComponent extends NuRect {
     expand() {
         this.expandX();
         this.expandY();
+    }
+
+    mouseover() {
+        //do nothing
+    }
+
+    mouseout() {
+        //do nothing
     }
 }
 
@@ -284,8 +307,16 @@ export class NuButton extends NuUIComponent {
         this.elem.setAttribute('type', 'button');
     }
 
+    setDefaultConfigs() {
+        super.setDefaultConfigs();
+        this.uicfg.setDefaults({
+            'text-align': 'center'
+        });
+    }
+
     applyConfig() {
         super.applyConfig();
+
         const icon = this.getCfg('icon');
         const text = this.getCfg('text');
         console.log(`icon ${icon}, text ${text}`);
@@ -299,6 +330,30 @@ export class NuButton extends NuUIComponent {
         if (text != null) {
             this.elem.innerHTML += text;
         }
+
+        this.setElemStyle('text-align', this.getCfg('text-align'));
+    }
+
+    disable() {
+        this.elem.setAttribute('disabled', true);
+        this.setElemStyle('opacity', 0.8);
+    }
+
+    enable() {
+        this.elem.removeAttribute('disabled');
+        this.unsetElemStyle('opacity');
+    }
+
+    isDisabled() {
+        return this.elem.hasAttribute('disabled');
+    }
+
+    mouseover() {
+        this.setElemStyle('cursor', 'pointer');
+    }
+
+    mouseout() {
+        this.unsetElemStyle('cursor');
     }
 }
 
