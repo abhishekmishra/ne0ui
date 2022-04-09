@@ -113,47 +113,47 @@ export class NuUIComponent extends NuRect {
 
         // some handlers
         if (this.mouseUp) {
-            this.elem.addEventListener('mouseup', (evt) => {
+            this.on('mouseup', (evt) => {
                 this.mouseUp(evt);
             });
         }
         if (this.mouseMove) {
-            this.elem.addEventListener('mousemove', (evt) => {
+            this.on('mousemove', (evt) => {
                 this.mouseMove(evt);
             });
         }
         if (this.mouseDown) {
-            this.elem.addEventListener('mousedown', (evt) => {
+            this.on('mousedown', (evt) => {
                 this.mouseDown(evt);
             });
         }
         // // see https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md
         // // for passive event listeners
         if (this.touchStart) {
-            this.elem.addEventListener('touchstart', (evt) => {
+            this.on('touchstart', (evt) => {
                 this.touchStart(evt);
             });
         }
         if (this.touchMove) {
-            this.elem.addEventListener('touchmove', (evt) => {
+            this.on('touchmove', (evt) => {
                 this.touchMove(evt);
             });
         }
         if (this.touchEnd) {
-            this.elem.addEventListener('touchend', (evt) => {
+            this.on('touchend', (evt) => {
                 this.touchEnd(evt);
             });
         }
 
         if (this.mouseOver) {
             this.on('mouseover', (evt) => {
-                this.mouseOver();
+                this.mouseOver(evt);
             });
         }
 
         if (this.mouseOut) {
             this.on('mouseout', (evt) => {
-                this.mouseOut();
+                this.mouseOut(evt);
             });
         }
     }
