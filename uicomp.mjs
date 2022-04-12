@@ -246,6 +246,12 @@ export class NuUIComponent extends NuRect {
         }
     }
 
+    dispatchEvent(eventName, detail) {
+        this.elem.dispatchEvent(new CustomEvent(eventName, {
+            detail: detail,
+        }));
+    }
+
     on(event, handler) {
         this.elem.addEventListener(event, handler);
     }
