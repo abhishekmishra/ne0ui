@@ -166,6 +166,7 @@ export class NuRect {
     }
 
     setAbsolutePosition(l, t) {
+        console.log(`setting position to left = ${l}, top = ${t}`);
         this.setStyle('position', 'absolute');
         this.setStyle('top', t + 'px');
         this.setStyle('left', l + 'px');

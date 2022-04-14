@@ -456,5 +456,72 @@ export class NuCanvas extends NuUIComponent {
 export class NuFrame extends NuUIComponent {
     constructor(config) {
         super('div', config);
+        this.setElemStyle('width', this.getWidth() + 'px');
+        this.setElemStyle('height', this.getHeight() + 'px');
+    }
+
+    setDefaultConfigs() {
+        super.setDefaultConfigs();
+        this.uicfg.setDefaults({
+            frameBorderWidth: 5,
+            pos: {
+                left: 0,
+                top: 0,
+            },
+        });
+    }
+
+    applyConfig() {
+        super.applyConfig();
+        this.setElemStyle('border', `${this.getCfg('frameBorderWidth')}px solid black`);
+        console.log(this.getCfg('pos').left);
+        const pos = this.getCfg('pos');
+        this.setAbsolutePosition(pos.left, pos.top);
+    }
+
+    postresize() {
+        super.postresize();
+        this.setElemStyle('width', this.getWidth() + 'px');
+        this.setElemStyle('height', this.getHeight() + 'px');
+    }
+
+    overFrameContents(pt) {
+        const bw = this.getCfg('frameBorderWidth');
+        if(pt.x > bw && pt.y > bw && pt.x < (this.getWidth() - bw) && pt.y < (this.getHeight() - bw)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    overBorder(pt) {
+        return !this.overFrameContents(pt);
+    }
+
+    mouseMove(evt) {
+        const pt = this.getMousePos(evt)
+        //console.log(pt);
+        if(this.overBorder(pt)) {
+            console.log(`${pt} is over boder`);
+            this.setElemStyle('cursor', 'e-resize');
+        } else {
+            this.unsetElemStyle('cursor');
+        }
+    }
+
+    // mouseOver(evt) {
+    //     console.log(this.getMousePos(evt));
+    // }
+
+    // mouseOut(evt) {
+    //     console.log(this.getMousePos(evt));
+    // }
+
+    getMousePos(evt) {
+        var rect = this.elem.getBoundingClientRect();
+        return {
+            x: evt.clientX - rect.left,
+            y: evt.clientY - rect.top,
+        };
     }
 }
