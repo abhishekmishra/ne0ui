@@ -452,3 +452,9 @@ export class NuCanvas extends NuUIComponent {
         this.setStyle('text-align', 'center');
     }
 }
+
+export class NuFrame extends NuUIComponent {
+    constructor(config) {
+        super('div', config);
+    }
+}
