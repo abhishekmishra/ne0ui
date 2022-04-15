@@ -424,6 +424,9 @@ export class NuButton extends NuUIComponent {
     }
 }
 
+/**
+ * UI component to show a single line of text.
+ */
 export class NuSingleLineText extends NuUIComponent {
     constructor(config) {
         super(document.createElement('span'), config);
@@ -446,6 +449,9 @@ export class NuSingleLineText extends NuUIComponent {
     }
 }
 
+/**
+ * A ui component to hold a canvas component.
+ */
 export class NuCanvas extends NuUIComponent {
     constructor(config) {
         super(document.createElement('canvas'), config);
@@ -453,6 +459,13 @@ export class NuCanvas extends NuUIComponent {
     }
 }
 
+/**
+ * A resizable container, which can contain one
+ * other UI component inside it. The frame contains
+ * a border which can be activated by hovering over it
+ * and then can be used to resize the frame, similar to a
+ * window in a desktop UI environment.
+ */
 export class NuFrame extends NuUIComponent {
     constructor(config) {
         super('div', config);
