@@ -38,7 +38,7 @@ export function allocateSizes(dimHints, avlblLen) {
     }
 
     if (sumOfMins == avlblLen) {
-        console.log(`min length of all items ${sumOfMins} is equal to available length ${avlblLen}. Allocate min for all.`);
+        // console.log(`min length of all items ${sumOfMins} is equal to available length ${avlblLen}. Allocate min for all.`);
         return minArr;
     }
 

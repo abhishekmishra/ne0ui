@@ -38,7 +38,6 @@ var text = new NuSingleLineText({
 });
 
 slider.on('input', (evt) => {
-    console.log(evt.target.value);
     text.setText(`Slider value is: ${evt.target.value}`);
 });
 
