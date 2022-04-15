@@ -85,7 +85,7 @@ export class NuUIComponent extends NuRect {
         } else if (config instanceof Object) {
             cfg = new NuUICompConfig(config);
         } else {
-            this.cfg = new NuUICompConfig();
+            cfg = new NuUICompConfig();
         }
 
         //now create the super class with width and height
@@ -160,6 +160,10 @@ export class NuUIComponent extends NuRect {
 
     getCfg(k) {
         return this.uicfg.get(k);
+    }
+
+    setCfg(k, v) {
+        this.uicfg.set(k, v);
     }
 
     setDefaultConfigs() {
@@ -447,6 +451,11 @@ export class NuSingleLineText extends NuUIComponent {
         this.setElemStyle('justify-content', this.getCfg('justify'));
         this.setElemStyle('white-space', 'nowrap');
     }
+
+    setText(text) {
+        this.setCfg('text', text);
+        this.applyConfig();
+    }
 }
 
 /**
@@ -500,7 +509,7 @@ export class NuFrame extends NuUIComponent {
 
     overFrameContents(pt) {
         const bw = this.getCfg('frameBorderWidth');
-        if(pt.x > bw && pt.y > bw && pt.x < (this.getWidth() - bw) && pt.y < (this.getHeight() - bw)) {
+        if (pt.x > bw && pt.y > bw && pt.x < (this.getWidth() - bw) && pt.y < (this.getHeight() - bw)) {
             return true;
         } else {
             return false;
@@ -514,7 +523,7 @@ export class NuFrame extends NuUIComponent {
     mouseMove(evt) {
         const pt = this.getMousePos(evt)
         //console.log(pt);
-        if(this.overBorder(pt)) {
+        if (this.overBorder(pt)) {
             console.log(`${pt} is over boder`);
             this.setElemStyle('cursor', 'e-resize');
         } else {
@@ -536,5 +545,181 @@ export class NuFrame extends NuUIComponent {
             x: evt.clientX - rect.left,
             y: evt.clientY - rect.top,
         };
+    }
+}
+
+/**
+ * Create an input of any possible type in html.
+ * The type needs to be specified as config "inputType"
+ * The possible types of input are:
+ * <ol>
+ * <li>button</li>
+ * <li>checkbox</li>
+ * <li>color</li>
+ * <li>date</li>
+ * <li>datetime-local</li>
+ * <li>email</li>
+ * <li>file</li>
+ * <li>hidden</li>
+ * <li>image</li>
+ * <li>month</li>
+ * <li>number</li>
+ * <li>password</li>
+ * <li>radio</li>
+ * <li>range</li>
+ * <li>reset</li>
+ * <li>search</li>
+ * <li>submit</li>
+ * <li>tel</li>
+ * <li>text</li>
+ * <li>time</li>
+ * <li>url</li>
+ * <li>week</li>
+ * </ol>
+ */
+ export class NuInput extends NuUIComponent {
+    /**
+     * create a new html input based ui component
+     * @param {Object} config component configuration
+     */
+    constructor(config) {
+        super('input', config);
+    }
+
+    setDefaultConfigs() {
+        super.setDefaultConfigs();
+        this.uicfg.setDefaults({
+            inputType: 'text',
+        });
+    }
+
+    applyConfig() {
+        super.applyConfig();
+        this.elem.setAttribute('type', this.getCfg('inputType'));
+    }
+}
+
+/**
+ * Create an html label for an input.
+ * Config must contain the "label" and "labelFor"
+ * configurations.
+ * label is the text for the label,
+ * labelFor specifies the id of the input, 
+ * to which this label is attached
+ */
+export class NuLabel extends NuUIComponent {
+    constructor(config) {
+        super('label', config);
+    }
+
+    setDefaultConfigs() {
+        super.setDefaultConfigs();
+        this.uicfg.setDefaults({
+            justify: 'left',
+            label: 'none',
+            labelFor: '0'
+        });
+    }
+
+    applyConfig() {
+        super.applyConfig();
+        this.elem.innerHTML = this.getCfg('label');
+        this.elem.setAttribute('for', this.getCfg('labelFor'));
+        this.setElemStyle('display', 'flex');
+        this.setElemStyle('align-items', 'center');
+        this.setElemStyle('justify-content', this.getCfg('justify'));
+        this.setElemStyle('white-space', 'nowrap');
+    }
+}
+
+
+/**
+ * Create an input of any possible type in html.
+ * The type needs to be specified as config "inputType"
+ * The possible types of input are:
+ * <ol>
+ * <li>button</li>
+ * <li>checkbox</li>
+ * <li>color</li>
+ * <li>date</li>
+ * <li>datetime-local</li>
+ * <li>email</li>
+ * <li>file</li>
+ * <li>hidden</li>
+ * <li>image</li>
+ * <li>month</li>
+ * <li>number</li>
+ * <li>password</li>
+ * <li>radio</li>
+ * <li>range</li>
+ * <li>reset</li>
+ * <li>search</li>
+ * <li>submit</li>
+ * <li>tel</li>
+ * <li>text</li>
+ * <li>time</li>
+ * <li>url</li>
+ * <li>week</li>
+ * </ol>
+ */
+export class NuInputPanel extends NuPanel {
+    labelComp;
+    inputComp;
+
+    /**
+     * create a new html input based ui component
+     * @param {Object} config component configuration
+     */
+    constructor(config, inputComp, labelComp) {
+        super(config);
+        this.labelComp = labelComp;
+        this.inputComp = inputComp;
+        this.addComp(this.labelComp);
+        this.addComp(this.inputComp);
+    }
+
+    setDefaultConfigs() {
+        super.setDefaultConfigs();
+        this.uicfg.setDefaults({
+        });
+    }
+
+    applyConfig() {
+        super.applyConfig();
+    }
+}
+
+/**
+ * A range input to pick a value between a range.
+ * User must specify range configuration options.
+ * config options are
+ * <ol>
+ * <li> min minimum value </li>
+ * <li> max maximum value </li>
+ * <li> value current value </li>
+ * </old>
+ */
+export class NuRangeInput extends NuInput {
+    /**
+     * create a rannge entry ui component with given range and current value
+     * @param {Object} config component configuration
+     */
+    constructor(config) {
+        super(config);
+    }
+
+    setDefaultConfigs() {
+        super.setDefaultConfigs();
+        this.uicfg.setDefaults({
+            inputType: 'range',
+        });
+    }
+
+    applyConfig() {
+        super.applyConfig();
+        this.elem.setAttribute('min', this.getCfg('min'));
+        this.elem.setAttribute('max', this.getCfg('max'));
+        this.elem.setAttribute('value', this.getCfg('value'));
+
     }
 }

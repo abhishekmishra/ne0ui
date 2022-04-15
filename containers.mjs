@@ -464,7 +464,7 @@ export class NuTop extends NuColumnContainer {
         );
 
         this.id('main');
-        this.setStyle('background-color', 'gray');
+        // this.setStyle('background-color', 'gray');
         document.body.appendChild(this.div);
         document.body.style.setProperty('margin', '0px');
         document.body.style.setProperty('width', '100%');
