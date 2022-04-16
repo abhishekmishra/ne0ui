@@ -164,6 +164,7 @@ export class NuUIComponent extends NuRect {
 
     setCfg(k, v) {
         this.uicfg.set(k, v);
+        this.applyConfig();
     }
 
     setDefaultConfigs() {
@@ -676,6 +677,9 @@ export class NuInputPanel extends NuPanel {
         this.inputComp = inputComp;
         this.addComp(this.labelComp);
         this.addComp(this.inputComp);
+
+        //set the label for to input component's id
+        this.labelComp.setCfg('labelFor', this.inputComp.elem.id);
     }
 
     setDefaultConfigs() {
