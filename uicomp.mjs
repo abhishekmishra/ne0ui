@@ -695,8 +695,7 @@ export class NuInputPanel extends NuPanel {
 
 /**
  * A range input to pick a value between a range.
- * User must specify range configuration options.
- * config options are
+ * Must specify the following range configuration options.
  * <ol>
  * <li> min: minimum value </li>
  * <li> max: maximum value </li>
@@ -730,5 +729,36 @@ export class NuRangeInput extends NuInput {
         this.elem.setAttribute('max', this.getCfg('max'));
         this.elem.setAttribute('value', this.getCfg('value'));
         this.elem.setAttribute('step', this.getCfg('step'));
+    }
+}
+
+/**
+ * A color input for setting color values.
+ * This component has one additional config
+ * option:
+ * 
+ * color: starting color value of the input
+ * 
+ */
+export class NuColorInput extends NuInput {
+    /**
+     * create a color input ui component
+     * @param {Object} config component configuration
+     */
+    constructor(config) {
+        super(config);
+    }
+
+    setDefaultConfigs() {
+        super.setDefaultConfigs();
+        this.uicfg.setDefaults({
+            inputType: 'color',
+            color: '#00ff00',
+        });
+    }
+
+    applyConfig() {
+        super.applyConfig();
+        this.elem.setAttribute('color', this.getCfg('color'));
     }
 }
