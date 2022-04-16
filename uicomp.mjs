@@ -694,9 +694,10 @@ export class NuInputPanel extends NuPanel {
  * User must specify range configuration options.
  * config options are
  * <ol>
- * <li> min minimum value </li>
- * <li> max maximum value </li>
- * <li> value current value </li>
+ * <li> min: minimum value </li>
+ * <li> max: maximum value </li>
+ * <li> value: current value </li>
+ * <li> step: step of change </li>
  * </old>
  */
 export class NuRangeInput extends NuInput {
@@ -712,6 +713,10 @@ export class NuRangeInput extends NuInput {
         super.setDefaultConfigs();
         this.uicfg.setDefaults({
             inputType: 'range',
+            min: 0,
+            max: 100,
+            value: 10,
+            step: 1,
         });
     }
 
@@ -720,6 +725,6 @@ export class NuRangeInput extends NuInput {
         this.elem.setAttribute('min', this.getCfg('min'));
         this.elem.setAttribute('max', this.getCfg('max'));
         this.elem.setAttribute('value', this.getCfg('value'));
-
+        this.elem.setAttribute('step', this.getCfg('step'));
     }
 }
