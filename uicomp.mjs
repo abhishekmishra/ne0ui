@@ -759,6 +759,6 @@ export class NuColorInput extends NuInput {
 
     applyConfig() {
         super.applyConfig();
-        this.elem.setAttribute('color', this.getCfg('color'));
+        this.elem.setAttribute('value', this.getCfg('color'));
     }
 }
