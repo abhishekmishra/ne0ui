@@ -190,6 +190,29 @@ export class NuRect {
         this.div.removeChild(elem);
     }
 
+    isHidden() {
+        return this.div.style.display === 'none';
+    }
+
+    isShown() {
+        return !this.isHidden();
+    }
+
+    hide() {
+        this.div.style.display = 'none';
+    }
+
+    show() {
+        this.div.style.display = 'block'
+    }
+
+    toggleVisible() {
+        if(this.isHidden()) {
+            this.show();
+        } else {
+            this.hide();
+        }
+    }
 }
 
 class _DirectionLayout extends NuRect {

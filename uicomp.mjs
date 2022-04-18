@@ -510,10 +510,12 @@ export class NuFrame extends NuUIComponent {
 
     overFrameContents(pt) {
         const bw = this.getCfg('frameBorderWidth');
-        if (pt.x > bw && pt.y > bw && pt.x < (this.getWidth() - bw) && pt.y < (this.getHeight() - bw)) {
-            return true;
+        //TODO: return proper hot area of border
+        //one of n/e/w/s/ne/se/nw/sw
+        if (pt.x > bw && pt.y > bw && pt.x < (this.getWidth() - bw) && pt.y < (this.getHeight() - bw)) {          
+            return 'N';
         } else {
-            return false;
+            return null;
         }
     }
 
@@ -524,8 +526,9 @@ export class NuFrame extends NuUIComponent {
     mouseMove(evt) {
         const pt = this.getMousePos(evt)
         //console.log(pt);
-        if (this.overBorder(pt)) {
-            console.log(`${pt} is over boder`);
+        const border = this.overBorder(pt);
+        if (border !== null) {
+            // console.log(`${pt} is over border`);
             this.setElemStyle('cursor', 'e-resize');
         } else {
             this.unsetElemStyle('cursor');
@@ -760,5 +763,28 @@ export class NuColorInput extends NuInput {
     applyConfig() {
         super.applyConfig();
         this.elem.setAttribute('value', this.getCfg('color'));
+    }
+}
+
+/**
+ * A Window can contain an arbitrary number of components
+ * in row or columns layout.
+ * It can be shown and hidden, and can be modal.
+ */
+export class NuWindow extends NuFrame {
+    layout;
+
+    /**
+     * Create a new dialog frame.
+     * @param {Object} config component configuration
+     */
+    constructor(config) {
+        super(config);
+        this.layout = new NuColumnPanel(config);
+        this.elem.appendChild(this.layout.div);
+    }
+
+    addComp(comp, side='begin') {
+        this.layout.addComp(comp, side);
     }
 }
