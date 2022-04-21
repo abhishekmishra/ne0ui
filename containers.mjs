@@ -213,6 +213,18 @@ export class NuRect {
             this.hide();
         }
     }
+
+    toggleFullscreen() {
+        if (!document.fullscreenElement) {
+            this.div.requestFullscreen().then(() => {
+                this.resetPagePosition();
+            }).catch(err => {
+                alert(`Error attempting to enable fullscreen mode: ${err.message} (${err.name})`);
+            });
+        } else {
+            document.exitFullscreen();
+        }
+    }
 }
 
 class _DirectionLayout extends NuRect {
