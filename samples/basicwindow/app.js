@@ -1,5 +1,6 @@
 import { NuTop, NuSingleLineText } from "../../index.mjs";
 import { getSizeHint, NuSizeHint } from "../../sizehint.mjs";
+import { NuBorder } from "../../uicommon.mjs";
 import { NuButton, NuRowPanel, NuWindow } from "../../uicomp.mjs";
 
 // create the toplevel window
@@ -46,7 +47,7 @@ for (var i = 0; i < 9; i++) {
     var text = new NuSingleLineText({
         w: new NuSizeHint(50, 50, Infinity),
         h: 30,
-        border: '',
+        border: new NuBorder(), //empty border
         text: 'Single line text #' + i,
         justify: 'center'
     });

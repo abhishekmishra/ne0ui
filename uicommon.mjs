@@ -124,24 +124,24 @@ export class NuMargin extends NuSides {
         if (typeof input === 'string') {
             const vals = input.split(' ');
             if (vals.length === 1) {
-                const v = NuSides.getNumericSidesFromArg(vals[0]);
+                const v = parseFloat(vals[0]);
                 return NuMargin.allEqual(v);
             }
             else if (vals.length === 2) {
-                const v1 = NuSides.getNumericSidesFromArg(vals[0]);
-                const v2 = NuSides.getNumericSidesFromArg(vals[1]);
+                const v1 = parseFloat(vals[0]);
+                const v2 = parseFloat(vals[1]);
                 return NuMargin.vertAndHoriz(v1, v2);
             }
             else if (vals.length === 3) {
-                const v1 = NuSides.getNumericSidesFromArg(vals[0]);
-                const v2 = NuSides.getNumericSidesFromArg(vals[1]);
-                const v3 = NuSides.getNumericSidesFromArg(vals[2]);
+                const v1 = parseFloat(vals[0]);
+                const v2 = parseFloat(vals[1]);
+                const v3 = parseFloat(vals[2]);
                 return new NuMargin(v1, v2, v3, v2);
             } else if (vals.length > 3) {
-                const v1 = NuSides.getNumericSidesFromArg(vals[0]);
-                const v2 = NuSides.getNumericSidesFromArg(vals[1]);
-                const v3 = NuSides.getNumericSidesFromArg(vals[2]);
-                const v4 = NuSides.getNumericSidesFromArg(vals[3]);
+                const v1 = parseFloat(vals[0]);
+                const v2 = parseFloat(vals[1]);
+                const v3 = parseFloat(vals[2]);
+                const v4 = parseFloat(vals[3]);
                 return new NuMargin(v1, v2, v3, v4);
             }
         }
@@ -178,23 +178,23 @@ export class NuPadding extends NuSides {
         if (typeof input === 'string') {
             const vals = input.split(' ');
             if (vals.length === 1) {
-                const v = NuSides.getNumericSidesFromArg(vals[0]);
+                const v = parseFloat(vals[0]);
                 return NuPadding.allEqual(v);
             }
             else if (vals.length === 2) {
-                const v1 = NuSides.getNumericSidesFromArg(vals[0]);
-                const v2 = NuSides.getNumericSidesFromArg(vals[1]);
+                const v1 = parseFloat(vals[0]);
+                const v2 = parseFloat(vals[1]);
                 return NuPadding.vertAndHoriz(v1, v2);
             }
             else if (vals.length === 3) {
-                const v1 = NuSides.getNumericSidesFromArg(vals[0]);
-                const v2 = NuSides.getNumericSidesFromArg(vals[1]);
-                const v3 = NuSides.getNumericSidesFromArg(vals[2]);
+                const v1 = parseFloat(vals[0]);
+                const v2 = parseFloat(vals[1]);
+                const v3 = parseFloat(vals[2]);
                 return new NuPadding(v1, v2, v3, v2);
             } else if (vals.length > 3) {
-                const v1 = NuSides.getNumericSidesFromArg(vals[0]);
-                const v2 = NuSides.getNumericSidesFromArg(vals[1]);
-                const v3 = NuSides.getNumericSidesFromArg(vals[2]);
+                const v1 = parseFloat(vals[0]);
+                const v2 = parseFloat(vals[1]);
+                const v3 = parseFloat(vals[2]);
                 const v4 = NuPadding.getNumericSidesFromArg(vals[3]);
                 return new NuMargin(v1, v2, v3, v4);
             }

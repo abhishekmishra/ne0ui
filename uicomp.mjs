@@ -180,6 +180,7 @@ export class NuUIComponent extends NuRect {
     applyConfig() {
         const margin = NuMargin.parse(this.getCfg('margin'));
         margin.applyStyle(this.elem);
+        console.log(margin);
         const padding = NuPadding.parse(this.getCfg('padding'));
         padding.applyStyle(this.elem);
         const border = NuBorder.parse(this.getCfg('border'));

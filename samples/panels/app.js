@@ -1,6 +1,9 @@
 import { NuTop, NuSingleLineText } from "../../index.mjs";
 import { NuSizeHint } from "../../sizehint.mjs";
+import { NuBorder } from "../../uicommon.mjs";
 import { NuColumnPanel, NuRowPanel } from "../../uicomp.mjs";
+
+//TODO: fix border string when NuBorder.parse is implemented.
 
 // create the toplevel window
 var top = new NuTop();
@@ -10,7 +13,8 @@ var panel = new NuColumnPanel({
     'w': new NuSizeHint(600, 600, Infinity),
     'h': 400,
     'margin': '10px',
-    'border': '2px solid black',
+    // 'border': '2px solid black',
+    'border': new NuBorder(2, 'black', 'solid'),
     'padding': '5px',
     'bg': 'azure',
 });
@@ -23,7 +27,8 @@ var rowPanel = new NuRowPanel({
     'w': new NuSizeHint(100, 50, Infinity),
     'h': 40,
     'bg': 'whitesmoke',
-    'border': '1px solid blue',
+    // 'border': '1px solid blue',
+    'border': new NuBorder(1, 'blue', 'solid'),
     'margin': '2px',
 });
 panel.addComp(rowPanel);
@@ -34,7 +39,8 @@ for (var i = 0; i < 3; i++) {
     var text = new NuSingleLineText({
         w: new NuSizeHint(100, 50, Infinity),
         h: new NuSizeHint(20, 20, Infinity),
-        border: '1px solid gray',
+        // border: '1px solid gray',
+        'border': new NuBorder(1, 'gray', 'solid'),
         margin: '2px',
         text: `#${i}: Lorem ipsum dolor...`,
         justify: 'center',
@@ -50,7 +56,8 @@ for (var i = 0; i < 5; i++) {
     var text = new NuSingleLineText({
         w: new NuSizeHint(100, 50, Infinity),
         h: new NuSizeHint(40, 50, Infinity),
-        border: '1px solid gray',
+        // border: '1px solid gray',
+        'border': new NuBorder(1, 'gray', 'solid'),
         margin: '2px',
         text: `#${i}: Lorem ipsum dolor sit amet, consectetur...`,
         justify: 'center',
