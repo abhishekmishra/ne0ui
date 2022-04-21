@@ -1,4 +1,4 @@
-function setElemStyle(elem, k = null, v = null) {
+export function setElemStyle(elem, k = null, v = null) {
     if (k !== null) {
         elem.style.setProperty(k, v);
         // console.log(`setting property ${k} to ${v}`);
@@ -71,7 +71,7 @@ export class NuBorder {
     style;
     radius;
     unit;
-    constructor(width, color, style = 'solid', radius = 0, unit = 'px') {
+    constructor(width = 0, color = 'black', style = 'solid', radius = 0, unit = 'px') {
         this.width = NuSides.getNumericSidesFromArg(width);
         this.color = NuSides.getStringSidesFromArg(color);
         this.style = NuSides.getStringSidesFromArg(style);
@@ -86,6 +86,13 @@ export class NuBorder {
             setElemStyle(uielem, `border-${side}-style`, this.style.getSide(side));
         });
         setElemStyle(uielem, 'border-radius', this.radius + this.unit);
+    }
+
+    static parse(input) {
+        if (input instanceof NuBorder) {
+            return input;
+        }
+        throw (new Error(`cannot parse ${input} for border`));
     }
 }
 
@@ -109,6 +116,38 @@ export class NuMargin extends NuSides {
     static vertAndHoriz(vert, horiz) {
         return new NuMargin(horiz, horiz, vert, vert);
     }
+
+    static parse(input) {
+        if (input instanceof NuMargin) {
+            return input;
+        }
+        if (typeof input === 'string') {
+            const vals = input.split(' ');
+            if (vals.length === 1) {
+                const v = NuSides.getNumericSidesFromArg(vals[0]);
+                return NuMargin.allEqual(v);
+            }
+            else if (vals.length === 2) {
+                const v1 = NuSides.getNumericSidesFromArg(vals[0]);
+                const v2 = NuSides.getNumericSidesFromArg(vals[1]);
+                return NuMargin.vertAndHoriz(v1, v2);
+            }
+            else if (vals.length === 3) {
+                const v1 = NuSides.getNumericSidesFromArg(vals[0]);
+                const v2 = NuSides.getNumericSidesFromArg(vals[1]);
+                const v3 = NuSides.getNumericSidesFromArg(vals[2]);
+                return new NuMargin(v1, v2, v3, v2);
+            } else if (vals.length > 3) {
+                const v1 = NuSides.getNumericSidesFromArg(vals[0]);
+                const v2 = NuSides.getNumericSidesFromArg(vals[1]);
+                const v3 = NuSides.getNumericSidesFromArg(vals[2]);
+                const v4 = NuSides.getNumericSidesFromArg(vals[3]);
+                return new NuMargin(v1, v2, v3, v4);
+            }
+        }
+        throw (new Error(`cannot parse ${input} for margin`));
+    }
+
 }
 
 export class NuPadding extends NuSides {
@@ -130,5 +169,64 @@ export class NuPadding extends NuSides {
 
     static vertAndHoriz(vert, horiz) {
         return new NuPadding(horiz, horiz, vert, vert);
+    }
+
+    static parse(input) {
+        if (input instanceof NuPadding) {
+            return input;
+        }
+        if (typeof input === 'string') {
+            const vals = input.split(' ');
+            if (vals.length === 1) {
+                const v = NuSides.getNumericSidesFromArg(vals[0]);
+                return NuPadding.allEqual(v);
+            }
+            else if (vals.length === 2) {
+                const v1 = NuSides.getNumericSidesFromArg(vals[0]);
+                const v2 = NuSides.getNumericSidesFromArg(vals[1]);
+                return NuPadding.vertAndHoriz(v1, v2);
+            }
+            else if (vals.length === 3) {
+                const v1 = NuSides.getNumericSidesFromArg(vals[0]);
+                const v2 = NuSides.getNumericSidesFromArg(vals[1]);
+                const v3 = NuSides.getNumericSidesFromArg(vals[2]);
+                return new NuPadding(v1, v2, v3, v2);
+            } else if (vals.length > 3) {
+                const v1 = NuSides.getNumericSidesFromArg(vals[0]);
+                const v2 = NuSides.getNumericSidesFromArg(vals[1]);
+                const v3 = NuSides.getNumericSidesFromArg(vals[2]);
+                const v4 = NuPadding.getNumericSidesFromArg(vals[3]);
+                return new NuMargin(v1, v2, v3, v4);
+            }
+        }
+        throw (new Error(`cannot parse ${input} for padding`));
+    }
+
+}
+
+export class NuFont {
+    family;
+    style;
+    size;
+    unit;
+
+    constructor(family = 'monospace', style = 'normal', size = 12, unit = 'px') {
+        this.family = family;
+        this.style = style;
+        this.size = size;
+        this.unit = unit;
+    }
+
+    applyStyle(uielem) {
+        setElemStyle(uielem, 'font-family', this.family);
+        setElemStyle(uielem, 'font-style', this.style);
+        setElemStyle(uielem, 'font-size', `${this.size}${this.unit}`);
+    }
+
+    static parse(input) {
+        if (input instanceof NuFont) {
+            return input;
+        }
+        throw (new Error(`cannot parse ${input} for font`));
     }
 }

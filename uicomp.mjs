@@ -1,4 +1,5 @@
 import { NuColumnContainer, NuRect, NuRowContainer } from './containers.mjs';
+import { NuFont, NuBorder, NuMargin, setElemStyle, NuPadding } from './uicommon.mjs';
 
 /**
  * Config class for UI components which
@@ -170,15 +171,21 @@ export class NuUIComponent extends NuRect {
     setDefaultConfigs() {
         this.uicfg.setDefaults({
             margin: '0px',
-            border: '0px',
-            padding: '0px'
+            padding: '0px',
+            border: new NuBorder(),
+            font: new NuFont()
         });
     }
 
     applyConfig() {
-        this.setElemStyle('margin', this.getCfg('margin'));
-        this.setElemStyle('padding', this.getCfg('padding'));
-        this.setElemStyle('border', this.getCfg('border'));
+        const margin = NuMargin.parse(this.getCfg('margin'));
+        margin.applyStyle(this.elem);
+        const padding = NuPadding.parse(this.getCfg('padding'));
+        padding.applyStyle(this.elem);
+        const border = NuBorder.parse(this.getCfg('border'));
+        border.applyStyle(this.elem);
+        const font = NuFont.parse(this.getCfg('font'));
+        font.applyStyle(this.elem);
         this.setElemStyle('background-color', this.getCfg('bg'));
         this.setElemStyle('color', this.getCfg('fg'));
     }
@@ -193,9 +200,7 @@ export class NuUIComponent extends NuRect {
     }
 
     setElemStyle(k = null, v = null) {
-        if (k !== null) {
-            this.elem.style.setProperty(k, v);
-        }
+        setElemStyle(this.elem, k, v);
     }
 
     unsetElemStyle(k = null) {
