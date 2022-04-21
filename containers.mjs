@@ -217,7 +217,7 @@ export class NuRect {
     toggleFullscreen() {
         if (!document.fullscreenElement) {
             this.div.requestFullscreen().then(() => {
-                this.resetPagePosition();
+                // this.resetPagePosition();
             }).catch(err => {
                 alert(`Error attempting to enable fullscreen mode: ${err.message} (${err.name})`);
             });
