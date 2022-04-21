@@ -486,7 +486,7 @@ export class NuFrame extends NuUIComponent {
     setDefaultConfigs() {
         super.setDefaultConfigs();
         this.uicfg.setDefaults({
-            frameBorderWidth: 5,
+            frameBorderWidth: 2,
             pos: {
                 left: 0,
                 top: 0,
