@@ -1,5 +1,6 @@
 import { NuSizeHint, getSizeHint } from "./sizehint.mjs";
 import { allocateSizes, sumArr } from "./allocutils.mjs";
+import { NuFont } from "./uicommon.mjs";
 
 /** 
  * The base container class in the NE0UI API.
@@ -24,7 +25,7 @@ export class NuRect {
 
         this.parentRect = null;
         this.div = document.createElement('div');
-        this.div.id = `${NuRect.nextId()}@${this.constructor.name}`;
+        this.id(`${NuRect.nextId()}@${this.constructor.name}`);
         // console.log(`created new id ${this.div.id}`);
         this.divCompStyle = window.getComputedStyle(this.div);
         this.setStyle('margin', "0px");
@@ -80,7 +81,7 @@ export class NuRect {
 
         // dispatch the nu_resize event
         this.div.dispatchEvent(new CustomEvent('nu_resize'), {
-            rect: this
+            rect: this,
         });
     }
 
@@ -498,14 +499,23 @@ export class NuTop extends NuColumnContainer {
             new NuSizeHint(window.innerHeight, 100, Infinity)
         );
 
-        this.id('main');
+        // this.id('main');
         // this.setStyle('background-color', 'gray');
         document.body.appendChild(this.div);
         document.body.style.setProperty('margin', '0px');
         document.body.style.setProperty('width', '100%');
         document.body.style.setProperty('height', '100%');
+
         document.body.onresize = (event) => {
             this.resize(window.innerWidth, window.innerHeight);
+        };
+
+        //create toplevel object
+        window.nu = {
+            top: this,
+            config: {
+                font: new NuFont('Times New Roman', 'normal', 12),
+            }
         };
     }
 }

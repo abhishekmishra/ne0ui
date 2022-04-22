@@ -173,7 +173,7 @@ export class NuUIComponent extends NuRect {
             margin: '0px',
             padding: '0px',
             border: new NuBorder(),
-            font: new NuFont()
+            font: nu.config.font,
         });
     }
 
