@@ -11,10 +11,23 @@ export class NuRect {
     dimHint;
     div;
     divCompStyle;
+
+    /**
+     * The parent rectangle of this rectangle. This can be null if there is
+     * no parent.
+     * @member {NuRect}
+     */
     parentRect;
 
     static rectCount = 0;
 
+    /**
+     * Creates a new NuRect rectangle with the given width and height.
+     * 
+     * @constructor
+     * @param {number} w - width of the rectangle
+     * @param {number} h - height of the rectangle
+     */
     constructor(w, h) {
         w = getSizeHint(w);
         h = getSizeHint(h);
@@ -44,14 +57,32 @@ export class NuRect {
         return this.rectCount;
     }
 
+    /**
+     * Get the parent rectangle of this rectangle object.
+     * 
+     * @returns {NuRect} the parent rectangle object (can be null)
+     */
     getParent() {
         return this.parentRect;
     }
 
+    /**
+     * Set the parent rectangle for this rectangle object.
+     * 
+     * @param {NuRe} pRect - the parent rectangle for this rectangle
+     */
     setParent(pRect) {
         this.parentRect = pRect;
     }
 
+    /**
+     * Set the suggest width and height of the rectangle.
+     * Final effective dimensions on screen will depend on layout
+     * settings of the container and available space.
+     * 
+     * @param {number} w - width of the rectangle
+     * @param {number} h - height of the rectangle
+     */
     setSizeHint(w, h) {
         this.dimHint = [];
         this.dimHint.push(w);
@@ -63,6 +94,12 @@ export class NuRect {
         this.setStyle('height', this.dim[1] + 'px');
     }
 
+    /**
+     * Set the width and height of the rectangle to specific values.
+     * 
+     * @param {number} w - width of the rectangle
+     * @param {number} h - height of th rectangle
+     */
     setSize(w, h) {
         this.dim[0] = w;
         this.dim[1] = h;
@@ -71,6 +108,12 @@ export class NuRect {
         this.setStyle('height', this.dim[1] + 'px');
     }
 
+    /**
+     * Resize the rectangle to given width X height
+     * 
+     * @param {number} w - width of the rectangle
+     * @param {number} h - height of th rectangle
+     */
     resize(w, h) {
         // console.log(`resize ${this.constructor.name} to ${w}, ${h}`);
         if (w >= this.getWidthHint().min && h >= this.getHeightHint().min) {
@@ -85,10 +128,22 @@ export class NuRect {
         });
     }
 
+    /**
+     * Attach the given event handler to the given event
+     * 
+     * @param {Object} event - event to assign the handler
+     * @param {Object} handler - event handler to attach to the event
+     */
     onRectEvent(event, handler) {
         this.div.addEventListener(event, handler);
     }
 
+    /**
+     * Detach the given event handler from the given event
+     * 
+     * @param {Object} event - event to assign the handler
+     * @param {Object} handler - event handler to detach
+     */
     offRectEvent(event, handler) {
         this.div.removeEventListener(event, handler);
     }
@@ -388,6 +443,11 @@ class _DirectionLayout extends NuRect {
     }
 }
 
+/**
+ * This is a simple container class to layout a list of NuRect objects in a
+ * column. UI components can be added at the beginning of the column at its
+ * end.
+ */
 export class NuColumnContainer extends _DirectionLayout {
     constructor(w, h) {
         super(w, h);
@@ -440,6 +500,11 @@ export class NuColumnContainer extends _DirectionLayout {
     }
 }
 
+/**
+ * This is a simple container class to layout a list of NuRect objects in a
+ * row. UI components can be added at the beginning of the row at its
+ * end.
+ */
 export class NuRowContainer extends _DirectionLayout {
     constructor(w, h) {
         super(w, h);
@@ -492,6 +557,10 @@ export class NuRowContainer extends _DirectionLayout {
     }
 }
 
+/**
+ * Top-level container for a webapp. This container sets some special
+ * attributes on the document.body to make sure this NuRect fills the screen.
+ */
 export class NuTop extends NuColumnContainer {
     constructor() {
         super(
