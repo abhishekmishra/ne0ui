@@ -438,6 +438,13 @@ class _DirectionLayout extends NuRect {
                 this.setPosition(item, pos);
             }
         }
+
+        let sumAlloc = 0;
+        for (let i = 0; i < alloc.length; i++) {
+            sumAlloc += alloc[i];
+        }
+
+        // console.log(`total length is ${this.getHeight()} and total alloc is ${this.getUsedLength()}`);
     }
 
     //override to broadcast the non length dimension of layout to the children
@@ -512,6 +519,24 @@ export class NuColumnContainer extends _DirectionLayout {
             item.resize(item.getWidthHint().clamp(this.getWidth()), item.getHeight());
         });
     }
+
+    /**
+     * In-case scrolling is enabled, then set the length(height/width) of the container
+     * to exactly the used length (but only if this is greater than or equal to the min length)
+     */
+    postresize() {
+        super.postresize();
+
+        if (this.isScrollEnabled()) {
+            // console.log(`column post resize used = ${this.getUsedLength()}, minh = ${this.getHeightHint().min}, height = ${this.getHeight()}`);
+            if (this.getUsedLength() >= this.getHeightHint().min) {
+                const usedLen = this.getUsedLength();
+                if (this.getHeight() != usedLen) {
+                    this.resize(this.getWidth(), usedLen);
+                }
+            }
+        }
+    }
 }
 
 /**
@@ -577,6 +602,23 @@ export class NuRowContainer extends _DirectionLayout {
         this.endItems.forEach((item) => {
             item.resize(item.getWidth(), item.getHeightHint().clamp(this.getHeight()));
         });
+    }
+
+    /**
+     * In-case scrolling is enabled, then set the length(height/width) of the container
+     * to exactly the used length (but only if this is greater than or equal to the min length)
+     */
+    postresize() {
+        super.postresize();
+
+        if (this.isScrollEnabled()) {
+            if (this.getUsedLength() >= this.getWidthHint().min) {
+                const usedLen = this.getUsedLength();
+                if (this.getWidth() != usedLen) {
+                    this.resize(usedLen, this.getHeight());
+                }
+            }
+        }
     }
 }
 

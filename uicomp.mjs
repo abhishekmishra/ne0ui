@@ -342,17 +342,35 @@ export class NuPanel extends NuUIComponent {
 
         if (scrollable) {
             if (orientation === 'horizontal') {
-                this.setElemStyle('overflow-y', 'auto');
-                this.setElemStyle('overflow-x', 'auto');
+                this.setElemStyle('overflow-y', 'hidden');
+                this.setElemStyle('overflow-x', 'visible');
+                this.layout.resize(4096, this.getInnerHeight());
             } else if (orientation == 'vertical') {
-                this.setElemStyle('overflow-x', 'auto');
-                this.setElemStyle('overflow-y', 'auto');
+                this.setElemStyle('overflow-x', 'hidden');
+                this.setElemStyle('overflow-y', 'visible');
+                this.layout.resize(this.getInnerWidth(), 4096);
             } else {
                 throw 'orientation not supported -> ' + orientation;
             }
         } else {
             this.setElemStyle('overflow', 'hidden');
+            this.layout.resize(this.getInnerWidth(), this.getInnerHeight());
         }
+
+
+        // if (scrollable) {
+        //     if (orientation === 'horizontal') {
+        //         this.setElemStyle('overflow-y', 'visible');
+        //         this.setElemStyle('overflow-x', 'visible');
+        //     } else if (orientation == 'vertical') {
+        //         this.setElemStyle('overflow-x', 'visible');
+        //         this.setElemStyle('overflow-y', 'visible');
+        //     } else {
+        //         throw 'orientation not supported -> ' + orientation;
+        //     }
+        // } else {
+        //     this.setElemStyle('overflow', 'hidden');
+        // }
     }
 
     addComp(uicomp, side = 'begin') {
@@ -361,7 +379,26 @@ export class NuPanel extends NuUIComponent {
 
     postresize() {
         super.postresize();
-        this.layout.resize(this.getInnerWidth(), this.getInnerHeight());
+        const orientation = this.getCfg('orientation');
+        const scrollable = this.getCfg('scrollable');
+
+        if (scrollable) {
+            if (orientation === 'horizontal') {
+                this.setElemStyle('overflow-y', 'hidden');
+                this.setElemStyle('overflow-x', 'visible');
+                this.layout.resize(4096, this.getInnerHeight());
+            } else if (orientation == 'vertical') {
+                this.setElemStyle('overflow-x', 'hidden');
+                this.setElemStyle('overflow-y', 'visible');
+                this.layout.resize(this.getInnerWidth(), 4096);
+            } else {
+                throw 'orientation not supported -> ' + orientation;
+            }
+        } else {
+            this.setElemStyle('overflow', 'hidden');
+            this.layout.resize(this.getInnerWidth(), this.getInnerHeight());
+        }
+
     }
 }
 
