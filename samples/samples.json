@@ -1,0 +1,49 @@
+{
+    "samples": [
+        {
+            "name": "helloworld",
+            "title": "Hello World!",
+            "description": "Simplest app with a single line of text."
+        },
+        {
+            "name": "textbutton",
+            "title": "Text and Button",
+            "description": "Demonstrates a text and a button component in a row."
+        },
+        {
+            "name": "panels",
+            "title": "Panels",
+            "description": "Panel containing multiple components."
+        },
+        {
+            "name": "framesbasic",
+            "title": "Basic Frames",
+            "description": "Just frames."
+        },
+        {
+            "name": "basicslider",
+            "title": "Basic Slider",
+            "description": "Just an input slider."
+        },
+        {
+            "name": "basiccolorinput",
+            "title": "Basic Color Input",
+            "description": "Just a color input element."
+        },
+        {
+            "name": "basicwindow",
+            "title": "Simple Window",
+            "description": "A simple window showing ability to show/hide, and layout."
+        },
+        {
+            "name": "bordermarginpadding",
+            "title": "Border, Margin, and Padding",
+            "description": "Setting border, margin and padding of ui compoments."
+        },
+        {
+            "name": "fontsettings",
+            "title": "Font Settings",
+            "description": "Setting border, margin and padding of ui compoments."
+        }
+    ]
+}
