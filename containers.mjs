@@ -286,12 +286,13 @@ export class NuRect {
 class _DirectionLayout extends NuRect {
     beginItems;
     endItems;
+    scrollEnabled;
 
-    constructor(w, h) {
+    constructor(w, h, scrollEnabled = false) {
         super(w, h);
+        this.scrollEnabled = scrollEnabled;
         this.beginItems = [];
         this.endItems = [];
-        this.setStyle('overflow', 'hidden');
     }
 
     remove(rect) {
@@ -441,6 +442,10 @@ class _DirectionLayout extends NuRect {
     //override to broadcast the non length dimension of layout to the children
     broadcastBreadth() {
     }
+
+    isScrollEnabled() {
+        return this.scrollEnabled;
+    }
 }
 
 /**
@@ -449,8 +454,16 @@ class _DirectionLayout extends NuRect {
  * end.
  */
 export class NuColumnContainer extends _DirectionLayout {
-    constructor(w, h) {
-        super(w, h);
+    constructor(w, h, scrollEnabled = false) {
+        super(w, h, scrollEnabled);
+
+        if (scrollEnabled) {
+            this.setStyle('overflow-x', 'hidden');
+            this.setStyle('overflow-y', 'auto');
+            this.getHeightHint().max = Infinity;
+        } else {
+            this.setStyle('overflow', 'hidden');
+        }
     }
 
     setItemLength(item, l) {
@@ -471,6 +484,10 @@ export class NuColumnContainer extends _DirectionLayout {
     }
 
     getMaxLength() {
+        if (this.isScrollEnabled()) {
+            // console.log(`scroll is enabled so returning ${this.getHeightHint().max}`);
+            return this.getHeightHint().max;
+        }
         return this.getHeight();
     }
 

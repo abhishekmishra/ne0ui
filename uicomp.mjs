@@ -328,10 +328,11 @@ export class NuPanel extends NuUIComponent {
     constructor(config) {
         super('div', config);
         const orientation = this.getCfg('orientation');
+        const scrollable = this.getCfg('scrollable');
         if (orientation === 'horizontal') {
-            this.layout = new NuRowContainer(this.getInnerWidth(), this.getInnerHeight());
+            this.layout = new NuRowContainer(this.getInnerWidth(), this.getInnerHeight(), scrollable);
         } else if (orientation == 'vertical') {
-            this.layout = new NuColumnContainer(this.getInnerWidth(), this.getInnerHeight());
+            this.layout = new NuColumnContainer(this.getInnerWidth(), this.getInnerHeight(), scrollable);
         } else {
             throw 'orientation not supported -> ' + orientation;
         }
