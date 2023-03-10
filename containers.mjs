@@ -283,11 +283,44 @@ export class NuRect {
     }
 }
 
-class _DirectionLayout extends NuRect {
+/**
+ * <p>
+ * This is the parent class of Row/Column container classes and implements
+ * some common logic for a container that allows adding other components
+ * along only one direction.
+ * </p>
+ * 
+ * <p>
+ * This class should not be used directly. However this is documented so
+ * that the logic for layout in directional containers is explained.
+ * </p>
+ * 
+ * <p>
+ * When scroll is enabled on a directional container via the <code>
+ * scrollEnabled </code>
+ * flag in the constructor - then the container will grow infinitely in the
+ * direction of addition of components. And in such a case the parent
+ * of the component must enable overflow to show this container.
+ * </p>
+ */
+class DirectionalContainer extends NuRect {
+    /** items to add at the beginning of the layout */
     beginItems;
+
+    /** items to add at the end of the layout */
     endItems;
+
+    /** flag indicating whether scrolling is enabled on parent */
     scrollEnabled;
 
+    /**
+     * Create a new container which grows in one direction.
+     * 
+     * @constructor
+     * @param {number} w - width
+     * @param {number} h - height
+     * @param {boolean} scrollEnabled - enable scrolling (infinite length)
+     */
     constructor(w, h, scrollEnabled = false) {
         super(w, h);
         this.scrollEnabled = scrollEnabled;
@@ -461,7 +494,7 @@ class _DirectionLayout extends NuRect {
  * column. UI components can be added at the beginning of the column at its
  * end.
  */
-export class NuColumnContainer extends _DirectionLayout {
+export class NuColumnContainer extends DirectionalContainer {
     constructor(w, h, scrollEnabled = false) {
         super(w, h, scrollEnabled);
 
@@ -544,7 +577,7 @@ export class NuColumnContainer extends _DirectionLayout {
  * row. UI components can be added at the beginning of the row at its
  * end.
  */
-export class NuRowContainer extends _DirectionLayout {
+export class NuRowContainer extends DirectionalContainer {
     constructor(w, h, scrollEnabled = false) {
         super(w, h, scrollEnabled);
 
