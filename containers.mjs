@@ -293,6 +293,7 @@ class _DirectionLayout extends NuRect {
         this.scrollEnabled = scrollEnabled;
         this.beginItems = [];
         this.endItems = [];
+        this.setStyle('overflow', 'hidden');
     }
 
     remove(rect) {
@@ -403,7 +404,7 @@ class _DirectionLayout extends NuRect {
         return ((minUsedLength + rect.getHeightHint().min) < this.getMaxLength());
     }
 
-    postresize(evt) {
+    postresize() {
         this.allocRects();
 
         this.broadcastBreadth();
@@ -458,11 +459,7 @@ export class NuColumnContainer extends _DirectionLayout {
         super(w, h, scrollEnabled);
 
         if (scrollEnabled) {
-            this.setStyle('overflow-x', 'hidden');
-            this.setStyle('overflow-y', 'auto');
             this.getHeightHint().max = Infinity;
-        } else {
-            this.setStyle('overflow', 'hidden');
         }
     }
 
@@ -523,8 +520,12 @@ export class NuColumnContainer extends _DirectionLayout {
  * end.
  */
 export class NuRowContainer extends _DirectionLayout {
-    constructor(w, h) {
-        super(w, h);
+    constructor(w, h, scrollEnabled = false) {
+        super(w, h, scrollEnabled);
+
+        if (scrollEnabled) {
+            this.getWidthHint().max = Infinity;
+        }
     }
 
     setItemLength(item, l) {
@@ -544,6 +545,11 @@ export class NuRowContainer extends _DirectionLayout {
     }
 
     getMaxLength() {
+        if (this.isScrollEnabled()) {
+            // console.log(`scroll is enabled so returning ${this.getWidthHint().max}`);
+            return this.getWidthHint().max;
+        }
+        
         return this.getWidth();
     }
 
@@ -591,6 +597,7 @@ export class NuTop extends NuColumnContainer {
         document.body.style.setProperty('margin', '0px');
         document.body.style.setProperty('width', '100%');
         document.body.style.setProperty('height', '100%');
+        // document.body.style.setProperty('overflow', 'hidden');
 
         document.body.onresize = (event) => {
             this.resize(window.innerWidth, window.innerHeight);

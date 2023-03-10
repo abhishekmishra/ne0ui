@@ -338,6 +338,21 @@ export class NuPanel extends NuUIComponent {
         }
         this.layout.setStyle('position', 'relative');
         this.elem.appendChild(this.layout.div);
+        this.setStyle('overflow', 'hidden');
+
+        if (scrollable) {
+            if (orientation === 'horizontal') {
+                this.setElemStyle('overflow-y', 'auto');
+                this.setElemStyle('overflow-x', 'auto');
+            } else if (orientation == 'vertical') {
+                this.setElemStyle('overflow-x', 'auto');
+                this.setElemStyle('overflow-y', 'auto');
+            } else {
+                throw 'orientation not supported -> ' + orientation;
+            }
+        } else {
+            this.setElemStyle('overflow', 'hidden');
+        }
     }
 
     addComp(uicomp, side = 'begin') {
@@ -518,7 +533,7 @@ export class NuFrame extends NuUIComponent {
         const bw = this.getCfg('frameBorderWidth');
         //TODO: return proper hot area of border
         //one of n/e/w/s/ne/se/nw/sw
-        if (pt.x > bw && pt.y > bw && pt.x < (this.getWidth() - bw) && pt.y < (this.getHeight() - bw)) {          
+        if (pt.x > bw && pt.y > bw && pt.x < (this.getWidth() - bw) && pt.y < (this.getHeight() - bw)) {
             return 'N';
         } else {
             return null;
@@ -587,7 +602,7 @@ export class NuFrame extends NuUIComponent {
  * <li>week</li>
  * </ol>
  */
- export class NuInput extends NuUIComponent {
+export class NuInput extends NuUIComponent {
     /**
      * create a new html input based ui component
      * @param {Object} config component configuration
@@ -790,7 +805,7 @@ export class NuWindow extends NuFrame {
         this.elem.appendChild(this.layout.div);
     }
 
-    addComp(comp, side='begin') {
+    addComp(comp, side = 'begin') {
         this.layout.addComp(comp, side);
     }
 }
