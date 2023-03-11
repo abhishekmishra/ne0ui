@@ -18,7 +18,8 @@ class SampleDisplayPanel extends NuColumnPanel {
             'h': 30,
             'text': 'Sample display: ...',
             'font': new NuFont('serif', 'bold', 20),
-            'justify': 'center'
+            'justify': 'center',
+            'bg': 'whitesmoke'
         });
 
         this.displayIframe = new NuIFrame({
