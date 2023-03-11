@@ -22,4 +22,8 @@ export class NuIFrame extends NuUIComponent {
 
         this.elem.setAttribute('src', src);
     }
+
+    setSrc(src) {
+        this.setCfg('src', src);
+    }
 }
