@@ -1,6 +1,44 @@
 import { NuTop, NuColumnPanel, NuSizeHint, NuBorder, NuSingleLineText, NuFont, NuRowPanel } from "../index.mjs";
 import { NuIFrame } from "../src/iframe.mjs";
 
+class SampleDisplayPanel extends NuColumnPanel {
+    titleText;
+    displayIframe;
+
+    constructor() {
+        const widthHint = new NuSizeHint(600, 600, Infinity);
+        super({
+            'w': widthHint,
+            'h': new NuSizeHint(600, 600, Infinity),
+            'margin': '1px',
+        });
+
+        this.titleText = new NuSingleLineText({
+            'w': widthHint,
+            'h': 30,
+            'text': 'Sample display: ...',
+            'font': new NuFont('serif', 'bold', 20),
+            'justify': 'center'
+        });
+
+        this.displayIframe = new NuIFrame({
+            'w': new NuSizeHint(600, 600, Infinity),
+            'h': new NuSizeHint(500, 500, Infinity),
+            'src': 'helloworld',
+            'border': new NuBorder(0),
+            'bg': 'whitesmoke'
+        });
+
+        this.addComp(this.titleText);
+        this.addComp(this.displayIframe);
+    }
+
+    showSample(sample) {
+        this.titleText.setText('Sample: ' + sample.title);
+        this.displayIframe.setSrc(sample.name);
+    }
+}
+
 class SamplePanel extends NuColumnPanel {
     constructor(sample) {
         super({
@@ -57,14 +95,7 @@ var sampleListPanel = new NuColumnPanel({
 
 topPanel.addComp(sampleListPanel);
 
-let sampleFrame = new NuIFrame({
-    'w': new NuSizeHint(600, 600, Infinity),
-    'h': new NuSizeHint(500, 500, Infinity),
-    'src': 'helloworld',
-    'border': new NuBorder(1),
-    'bg': 'whitesmoke'
-});
-
+let sampleFrame = new SampleDisplayPanel();
 topPanel.addComp(sampleFrame);
 
 let titleFont = new NuFont('sans-serif', 'bold', '2', 'em')
@@ -82,15 +113,18 @@ fetch('./samples.json', {
             const sample = response.samples[sampleId];
             console.log(sample);
 
+            if (sampleId == 0) {
+                sampleFrame.showSample(sample);
+            }
             // create a new panel
-            var samplePanel = new SamplePanel(sample);         
+            var samplePanel = new SamplePanel(sample);
 
             sampleListPanel.addComp(samplePanel);
 
             samplePanel.on('click', () => {
                 console.log('to load ' + sample.name);
-                sampleFrame.setSrc(sample.name);
+                sampleFrame.showSample(sample);
             });
-    
+
         }
     });
