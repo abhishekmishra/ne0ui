@@ -1,5 +1,5 @@
 import { NuTop, NuSingleLineText } from "../../index.mjs";
-import { NuFrame } from "../../uicomp.mjs";
+import { NuFrame } from "../../index.mjs";
 
 // create the toplevel window
 const top = new NuTop();

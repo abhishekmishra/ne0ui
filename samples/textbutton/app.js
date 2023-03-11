@@ -1,6 +1,6 @@
 import { NuTop, NuSingleLineText } from "../../index.mjs";
-import { NuSizeHint } from "../../sizehint.mjs";
-import { NuButton, NuRowPanel } from "../../uicomp.mjs";
+import { NuSizeHint } from "../../index.mjs";
+import { NuButton, NuRowPanel } from "../../index.mjs";
 
 // create the toplevel window
 var top = new NuTop();

@@ -1,5 +1,5 @@
 import { NuTop, NuSingleLineText } from "../../index.mjs";
-import { NuInputPanel, NuLabel, NuColorInput } from "../../uicomp.mjs";
+import { NuInputPanel, NuLabel, NuColorInput } from "../../index.mjs";
 
 // create the toplevel window
 var top = new NuTop();

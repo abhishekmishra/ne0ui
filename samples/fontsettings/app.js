@@ -1,5 +1,5 @@
 import { NuTop, NuSingleLineText } from "../../index.mjs";
-import { NuFont } from "../../uicommon.mjs";
+import { NuFont } from "../../index.mjs";
 
 // create the toplevel window
 var top = new NuTop();

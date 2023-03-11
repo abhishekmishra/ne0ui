@@ -1,7 +1,7 @@
 import { NuTop, NuSingleLineText } from "../../index.mjs";
-import { NuSizeHint } from "../../sizehint.mjs";
-import { NuBorder } from "../../uicommon.mjs";
-import { NuColumnPanel, NuRowPanel } from "../../uicomp.mjs";
+import { NuSizeHint } from "../../index.mjs";
+import { NuBorder } from "../../index.mjs";
+import { NuColumnPanel, NuRowPanel } from "../../index.mjs";
 
 //TODO: fix border string when NuBorder.parse is implemented.
 
