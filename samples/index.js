@@ -54,7 +54,7 @@ class SamplePanel extends NuColumnPanel {
         });
 
         this.addComp(new NuSingleLineText({
-            'text': `<a href="${sample.name}">${sample.title}</a>`,
+            'text': `${sample.title}`,
             'w': 100,
             'h': 20,
             'font': titleFont
