@@ -488,36 +488,6 @@ export class NuButton extends NuUIComponent {
 }
 
 /**
- * UI component to show a single line of text.
- */
-export class NuSingleLineText extends NuUIComponent {
-    constructor(config) {
-        super(document.createElement('span'), config);
-    }
-
-    setDefaultConfigs() {
-        super.setDefaultConfigs();
-        this.uicfg.setDefaults({
-            justify: 'left',
-        });
-    }
-
-    applyConfig() {
-        super.applyConfig();
-        this.elem.innerHTML = this.getCfg('text');
-        this.setElemStyle('display', 'flex');
-        this.setElemStyle('align-items', 'center');
-        this.setElemStyle('justify-content', this.getCfg('justify'));
-        this.setElemStyle('white-space', 'nowrap');
-    }
-
-    setText(text) {
-        this.setCfg('text', text);
-        this.applyConfig();
-    }
-}
-
-/**
  * A ui component to hold a canvas component.
  */
 export class NuCanvas extends NuUIComponent {

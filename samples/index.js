@@ -1,5 +1,5 @@
 import { NuTop, NuColumnPanel, NuSizeHint, NuBorder, NuSingleLineText, NuFont, NuRowPanel } from "../index.mjs";
-import { NuIFrame } from "../src/iframe.mjs";
+import { NuIFrame } from "../index.mjs";
 
 class SampleDisplayPanel extends NuColumnPanel {
     titleText;
