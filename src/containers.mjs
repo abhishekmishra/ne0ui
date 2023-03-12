@@ -452,8 +452,9 @@ class DirectionalContainer extends NuRect {
             dimHints.push(this.getItemLengthHint(itm));
         }
 
+        /* alloc will be null if allocation fails */
         var alloc = allocateSizes(dimHints, this.getMaxLength());
-        // console.log(alloc);
+
         if (alloc !== null) {
             var pos = 0;
             for (var i = 0; i < this.beginItems.length; i++) {
@@ -471,12 +472,6 @@ class DirectionalContainer extends NuRect {
                 this.setPosition(item, pos);
             }
         }
-
-        let sumAlloc = 0;
-        for (let i = 0; i < alloc.length; i++) {
-            sumAlloc += alloc[i];
-        }
-
         // console.log(`total length is ${this.getHeight()} and total alloc is ${this.getUsedLength()}`);
     }
 
