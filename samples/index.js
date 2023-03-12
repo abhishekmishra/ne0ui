@@ -1,9 +1,10 @@
-import { NuTop, NuColumnPanel, NuSizeHint, NuBorder, NuSingleLineText, NuFont, NuRowPanel, NuText } from "../index.mjs";
+import { NuTop, NuColumnPanel, NuSizeHint, NuBorder, NuSingleLineText, NuFont, NuRowPanel, NuText, NuPreformattedText } from "../index.mjs";
 import { NuIFrame } from "../index.mjs";
 
 class SampleDisplayPanel extends NuColumnPanel {
     titleText;
     displayIframe;
+    codeText;
 
     constructor() {
         const widthHint = new NuSizeHint(600, 600, Infinity);
@@ -24,19 +25,29 @@ class SampleDisplayPanel extends NuColumnPanel {
 
         this.displayIframe = new NuIFrame({
             'w': new NuSizeHint(600, 600, Infinity),
-            'h': new NuSizeHint(500, 500, Infinity),
+            'h': new NuSizeHint(300, 300, Infinity),
             'src': 'helloworld',
             'border': new NuBorder(0),
             'bg': 'whitesmoke'
         });
 
+        this.codeText = new NuIFrame({
+            'w': new NuSizeHint(600, 600, Infinity),
+            'h': new NuSizeHint(200, 200, Infinity),
+            'border': new NuBorder(0),
+            'bg': 'PapayaWhip',
+            'src': 'helloworld/app.js',
+        });
+
         this.addComp(this.titleText);
         this.addComp(this.displayIframe);
+        this.addComp(this.codeText);
     }
 
     showSample(sample) {
         this.titleText.setText('Sample: ' + sample.title);
         this.displayIframe.setSrc(sample.name);
+        this.codeText.setSrc(sample.name + '/app.js');
     }
 }
 
