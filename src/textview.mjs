@@ -46,6 +46,7 @@ export class NuText extends NuUIComponent {
         this.applyConfig();
     }
 }
+
 /**
  * UI component to show a single line of text.
  */
@@ -59,5 +60,45 @@ export class NuSingleLineText extends NuText {
         this.uicfg.setDefaults({
             'white-space': 'nowrap'
         });
+    }
+}
+
+/**
+ * <p>
+ * A text display component based on an HTML pre for displaying
+ * pre-formatted text. This component will not receive a tab focus.
+ * </p>
+ */
+export class NuPreformattedText extends NuUIComponent {
+
+    /**
+     * Creates a new UI component based on a span element.
+     * 
+     * @param {NuUICompConfig} config config for the text component
+     */
+    constructor(config) {
+        super(document.createElement('pre'), config);
+    }
+
+    setDefaultConfigs() {
+        super.setDefaultConfigs();
+        this.uicfg.setDefaults({
+            justify: 'left',
+            'white-space': 'normal'
+        });
+    }
+
+    applyConfig() {
+        super.applyConfig();
+        this.elem.innerHTML = this.getCfg('text');
+        this.setElemStyle('display', 'flex');
+        this.setElemStyle('align-items', 'center');
+        this.setElemStyle('justify-content', this.getCfg('justify'));
+        this.setElemStyle('white-space', this.getCfg('white-space'));
+    }
+
+    setText(text) {
+        this.setCfg('text', text);
+        this.applyConfig();
     }
 }
