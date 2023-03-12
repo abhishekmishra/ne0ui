@@ -1,4 +1,4 @@
-import { NuTop, NuColumnPanel, NuSizeHint, NuBorder, NuSingleLineText, NuFont, NuRowPanel } from "../index.mjs";
+import { NuTop, NuColumnPanel, NuSizeHint, NuBorder, NuSingleLineText, NuFont, NuRowPanel, NuText } from "../index.mjs";
 import { NuIFrame } from "../index.mjs";
 
 class SampleDisplayPanel extends NuColumnPanel {
@@ -13,7 +13,7 @@ class SampleDisplayPanel extends NuColumnPanel {
             'margin': '1px',
         });
 
-        this.titleText = new NuSingleLineText({
+        this.titleText = new NuText({
             'w': widthHint,
             'h': 30,
             'text': 'Sample display: ...',
@@ -44,7 +44,7 @@ class SamplePanel extends NuColumnPanel {
     constructor(sample) {
         super({
             'w': new NuSizeHint(120, 120, Infinity),
-            'h': new NuSizeHint(80, 80, 80),
+            'h': new NuSizeHint(120, 120, 120),
             'margin': '1px',
             // 'border': '2px solid black',
             'border': new NuBorder(2, 'black', 'solid'),
@@ -54,16 +54,16 @@ class SamplePanel extends NuColumnPanel {
         });
 
         this.addComp(new NuSingleLineText({
-            'text': `${sample.title}`,
+            'text': `${sample.index}. ${sample.title}`,
             'w': 100,
             'h': 20,
             'font': titleFont
         }));
 
-        this.addComp(new NuSingleLineText({
+        this.addComp(new NuText({
             'text': `${sample.description}`,
-            'w': 100,
-            'h': 40,
+            'w': new NuSizeHint(120, 120, Infinity),
+            'h': 80,
             'font': descFont
         }));
 
@@ -112,6 +112,7 @@ fetch('./samples.json', {
     .then(response => {
         for (let sampleId in response.samples) {
             const sample = response.samples[sampleId];
+            sample.index = sampleId;
             console.log(sample);
 
             if (sampleId == 0) {
