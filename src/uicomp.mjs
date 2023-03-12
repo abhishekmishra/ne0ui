@@ -283,6 +283,10 @@ export class NuUIComponent extends NuRect {
         this.expandY();
     }
 
+    focus() {
+        this.elem.focus();
+    }
+
     // mouseUp() {
     //     //do nothing
     // }
