@@ -2,7 +2,7 @@ import { NuTop, NuColumnPanel, NuSizeHint, NuBorder, NuSingleLineText, NuFont, N
 import { NuIFrame } from "../index.mjs";
 
 class SampleDisplayPanel extends NuColumnPanel {
-    titleText;
+    titleBar;
     displayIframe;
     codeText;
 
@@ -14,14 +14,16 @@ class SampleDisplayPanel extends NuColumnPanel {
             'margin': '1px',
         });
 
-        this.titleText = new NuText({
+        this.titleBar = new NuText({
             'w': widthHint,
             'h': 30,
             'text': 'Sample display: ...',
-            'font': new NuFont('serif', 'bold', 20),
+            'font': new NuFont('inherit', 'bold', 20),
             'justify': 'center',
-            'bg': 'whitesmoke'
+            // 'bg': 'whitesmoke'
         });
+
+        this.titleBar.div.setAttribute('class', 'title-bar');
 
         this.displayIframe = new NuIFrame({
             'w': new NuSizeHint(600, 600, Infinity),
@@ -39,13 +41,15 @@ class SampleDisplayPanel extends NuColumnPanel {
             'src': 'helloworld/app.js',
         });
 
-        this.addComp(this.titleText);
+        this.addComp(this.titleBar);
         this.addComp(this.displayIframe);
         this.addComp(this.codeText);
     }
 
     showSample(sample) {
-        this.titleText.setText('Sample: ' + sample.title);
+        this.titleBar.setText('<div class="title-bar-text">Sample: '
+            + sample.title
+            + '</div>');
         this.displayIframe.setSrc(sample.name);
         this.codeText.setSrc(sample.name + '/app.js');
     }
@@ -56,28 +60,33 @@ class SamplePanel extends NuColumnPanel {
         super({
             'w': new NuSizeHint(120, 120, Infinity),
             'h': new NuSizeHint(120, 120, 120),
-            'margin': '1px',
+            // 'margin': '1px',
             // 'border': '2px solid black',
-            'border': new NuBorder(2, 'black', 'solid'),
+            // 'border': new NuBorder(2, 'black', 'solid'),
             'padding': '5px',
             'bg': 'whitesmoke',
             // 'scrollable': true
         });
 
-        this.addComp(new NuSingleLineText({
-            'text': `${sample.index}. ${sample.title}`,
-            'w': 100,
+        let titleBar = new NuSingleLineText({
+            'text': `<div class="title-bar-text">${sample.index}. ${sample.title}</div>`,
+            'w': new NuSizeHint(120, 120, Infinity),
             'h': 20,
-            'font': titleFont
-        }));
+            // 'font': titleFont
+        });
+
+        titleBar.div.setAttribute('class', 'title-bar');
+
+        this.addComp(titleBar);
 
         this.addComp(new NuText({
             'text': `${sample.description}`,
             'w': new NuSizeHint(120, 120, Infinity),
             'h': 80,
-            'font': descFont
+            // 'font': descFont
         }));
 
+        this.div.setAttribute('class', 'window-body');
     }
 
     mouseOver() {
@@ -96,6 +105,8 @@ let topPanel = new NuRowPanel({
     'w': new NuSizeHint(600, 600, Infinity),
     'h': new NuSizeHint(500, 500, Infinity),
 });
+
+top.div.setAttribute('class', 'window-body');
 
 top.add(topPanel);
 
