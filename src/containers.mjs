@@ -281,6 +281,44 @@ export class NuRect {
             document.exitFullscreen();
         }
     }
+
+    /**
+     * Add the given css class to the list of classes of the div element.
+     * 
+     * @param {string} clsname css class name
+     */
+    addClass(clsname) {
+        this.div.classList.add(clsname);
+    }
+
+    /**
+     * Remove the given css class from the list of classes of the div element.
+     * 
+     * @param {string} clsname css class name
+     */
+    removeClass(clsname) {
+        this.div.classList.remove(clsname);
+    }
+
+    /**
+     * Toggle the given css class in the list of classes of the div element.
+     * 
+     * @param {string} clsname css class name
+     */
+    toggleClass(clsname) {
+        this.div.classList.toggle(clsname);
+    }
+
+    /**
+     * Check whether given css class name is in the list of classes for this
+     * div.
+     * 
+     * @param {string} clsname css class name
+     * @returns {boolean} flag indicating whether css class name was found
+     */
+    hasClass(clsname) {
+        return this.div.classList.contains(clsname);
+    }
 }
 
 /**
