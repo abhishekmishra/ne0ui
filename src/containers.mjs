@@ -173,22 +173,49 @@ export class NuRect {
         this.div.removeEventListener(event, handler);
     }
 
+    /**
+     * Callback for the resize event for the NuRect.
+     * Implement this to handle resize event.
+     * 
+     * @abstract
+     * @param {event} evt the event object
+     */
     postresize(evt) {
         // console.log(`New dim is ${this.dimHint}`);
     }
 
+    /**
+     * Get the width hint for this NuRect
+     * 
+     * @returns width hint
+     */
     getWidthHint() {
         return this.dimHint[0];
     }
 
+    /**
+     * Get width of the container
+     * 
+     * @returns width of the container
+     */
     getWidth() {
         return this.dim[0];
     }
 
+    /**
+     * Get the height hint for this NuRect
+     * 
+     * @returns height hint
+     */
     getHeightHint() {
         return this.dimHint[1];
     }
 
+    /**
+     * Get height of the container
+     * 
+     * @returns height of the container
+     */
     getHeight() {
         return this.dim[1];
     }
@@ -212,6 +239,13 @@ export class NuRect {
     //     return h;
     // }
 
+    /**
+     * Set the given value as id if not null,
+     * and return the current id.
+     * 
+     * @param {string} v id to set
+     * @returns get the current id
+     */
     id(v = null) {
         if (v !== null) {
             this.div.setAttribute('id', v);
@@ -219,6 +253,12 @@ export class NuRect {
         return this.div.getAttribute('id');
     }
 
+    /**
+     * Get the attribute value for the given key on the main container div
+     * 
+     * @param {string} k attribute key
+     * @returns attribute value
+     */
     getAttr(k = null) {
         if (k === null) {
             return null;
@@ -227,6 +267,12 @@ export class NuRect {
         }
     }
 
+    /**
+     * Set the attribute value for the given key on the main container div
+     * 
+     * @param {string} k attribute key
+     * @param {string} v attribute value
+     */
     setAttr(k = null, v = null) {
         if (k === null) {
             return null;
@@ -236,6 +282,12 @@ export class NuRect {
         }
     }
 
+    /**
+     * Set the given style attribute with the given value
+     * 
+     * @param {string} k style attribute key
+     * @param {string} v style attribute value
+     */
     setStyle(k = null, v = null) {
         if (k !== null) {
             if (k.startsWith('border')) {
@@ -246,6 +298,12 @@ export class NuRect {
         }
     }
 
+    /**
+     * Set the absolute position of the div element.
+     * 
+     * @param {number} l left position
+     * @param {number} t top position
+     */
     setAbsolutePosition(l, t) {
         // console.log(`setting position to left = ${l}, top = ${t}`);
         this.setStyle('position', 'absolute');
