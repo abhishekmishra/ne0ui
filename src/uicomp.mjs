@@ -103,6 +103,9 @@ export class NuUIComponent extends NuRect {
 
         this.elem.id = `${NuRect.nextId()}@${this.constructor.name}_elem`;
 
+        // add the css class <constructor-name>_elem all in lowercase
+        this.addElemClass(`${this.constructor.name.toLowerCase()}_elem`);
+
         //set the config object        
         this.uicfg = cfg;
 
@@ -207,6 +210,44 @@ export class NuUIComponent extends NuRect {
         if (k !== null) {
             this.elem.style.removeProperty(k);
         }
+    }
+
+    /**
+     * Add the given css class to the list of classes of the component element.
+     * 
+     * @param {string} clsname css class name
+     */
+    addElemClass(clsname) {
+        this.elem.classList.add(clsname);
+    }
+
+    /**
+     * Remove the given css class from the list of classes of the component element.
+     * 
+     * @param {string} clsname css class name
+     */
+    removeElemClass(clsname) {
+        this.elem.classList.remove(clsname);
+    }
+
+    /**
+     * Toggle the given css class in the list of classes of the component element.
+     * 
+     * @param {string} clsname css class name
+     */
+    toggleElemClass(clsname) {
+        this.elem.classList.toggle(clsname);
+    }
+
+    /**
+     * Check whether given css class name is in the list of classes for this
+     * component element.
+     * 
+     * @param {string} clsname css class name
+     * @returns {boolean} flag indicating whether css class name was found
+     */
+    hasElemClass(clsname) {
+        return this.elem.classList.contains(clsname);
     }
 
     setSize(w, h) {

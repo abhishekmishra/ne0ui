@@ -29,29 +29,54 @@ export class NuRect {
      * @param {number} h - height of the rectangle
      */
     constructor(w, h) {
+        // create size hint instances from the provided numeric or size hint
+        // values.
         w = getSizeHint(w);
         h = getSizeHint(h);
 
+        // make sure that now width and height are size hint objects
         if (!(w instanceof NuSizeHint) || !(h instanceof NuSizeHint)) {
             throw ("width and height should be size hint instances!");
         }
 
+        // set the parent rectangle to be null (no parent)
         this.parentRect = null;
+
+        // create a div element for the container
         this.div = document.createElement('div');
+
+        // set the id of the div element in the format
+        // <nextid@constructor-name>
         this.id(`${NuRect.nextId()}@${this.constructor.name}`);
+
+        // add a css class to the div with the name
+        // <constructor-name> in lowercase
+        this.addClass(`${this.constructor.name.toLowerCase()}`);
+
         // console.log(`created new id ${this.div.id}`);
+
+        // get the computed style of the div
         this.divCompStyle = window.getComputedStyle(this.div);
+
+        // set the margin, padding, and border to 0 by default
         this.setStyle('margin', "0px");
         this.setStyle('padding', "0px");
         // setStyle does not allow setting border
         this.div.style.setProperty('border', '0px');
 
+        // set the size hint of the NuRect object to the created values.
         this.setSizeHint(w, h);
 
         //default event handlers
         this.onRectEvent('nu_resize', (evt) => { this.postresize(evt); });
     }
 
+    /**
+     * Increments the id counter and returns the next value.
+     * 
+     * @returns {number} Get the next number which can be used as id
+     * @static
+     */
     static nextId() {
         this.rectCount += 1;
         return this.rectCount;

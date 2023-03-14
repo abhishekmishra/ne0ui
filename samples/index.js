@@ -23,7 +23,7 @@ class SampleDisplayPanel extends NuColumnPanel {
             // 'bg': 'whitesmoke'
         });
 
-        this.titleBar.div.setAttribute('class', 'title-bar');
+        this.titleBar.addClass('title-bar');
 
         this.displayIframe = new NuIFrame({
             'w': new NuSizeHint(600, 600, Infinity),
@@ -75,7 +75,7 @@ class SamplePanel extends NuColumnPanel {
             // 'font': titleFont
         });
 
-        titleBar.div.setAttribute('class', 'title-bar');
+        titleBar.addClass('title-bar');
 
         this.addComp(titleBar);
 
@@ -106,7 +106,7 @@ let topPanel = new NuRowPanel({
     'h': new NuSizeHint(500, 500, Infinity),
 });
 
-top.div.setAttribute('class', 'window-body');
+top.addClass('window-body');
 
 top.add(topPanel);
 
