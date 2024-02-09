@@ -222,7 +222,7 @@ export class NuFont {
         setElemStyle(uielem, 'font-family', this.family);
         setElemStyle(uielem, 'font-style', this.style);
         setElemStyle(uielem, 'font-size', `${this.size}${this.unit}`);
-        if(weight !== 0)
+        if(this.weight !== 0)
         {
             setElemStyle(uielem, 'font-weight', this.weight);
         }
