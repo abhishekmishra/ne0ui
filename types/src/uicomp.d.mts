@@ -253,6 +253,27 @@ export class NuWindow extends NuFrame {
     layout: NuColumnPanel;
     addComp(comp: any, side?: string): void;
 }
+/**
+ * A Tree-view panel to show a tree of items.
+ */
+export class NuTreeView extends NuUIComponent {
+    constructor(config: any);
+    addItem(item: any): void;
+}
+/**
+ * An item for the tree view.
+ */
+export class NuTreeItem {
+    constructor(config: any);
+    elem: HTMLLIElement;
+    on(event: any, handler: any): void;
+    removeEventListener(event: any, handler: any): void;
+}
+/**
+ * App Window with a Top window.
+ */
+export class NuAppWindow extends NuColumnPanel {
+}
 import { NuRect } from './containers.mjs';
 import { NuColumnContainer } from './containers.mjs';
 import { NuRowContainer } from './containers.mjs';
