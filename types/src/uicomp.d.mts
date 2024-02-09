@@ -253,6 +253,12 @@ export class NuWindow extends NuFrame {
     layout: NuColumnPanel;
     addComp(comp: any, side?: string): void;
 }
+/**
+ * A Dialog class, which can be shown and hidden.
+ */
+export class NuDialog extends NuUIComponent {
+    constructor(config: any);
+}
 import { NuRect } from './containers.mjs';
 import { NuColumnContainer } from './containers.mjs';
 import { NuRowContainer } from './containers.mjs';
