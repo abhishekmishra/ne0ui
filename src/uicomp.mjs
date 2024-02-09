@@ -198,7 +198,7 @@ export class NuUIComponent extends NuRect {
         this.appendElem(this.elem);
     }
 
-    getElem(e) {
+    getElem() {
         return this.elem;
     }
 
