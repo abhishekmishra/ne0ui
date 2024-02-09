@@ -41,7 +41,7 @@ export class NuUIComponent extends NuRect {
     setDefaultConfigs(): void;
     applyConfig(): void;
     setElem(e: any): void;
-    getElem(e: any): any;
+    getElem(): any;
     setElemStyle(k?: any, v?: any): void;
     unsetElemStyle(k?: any): void;
     /**
