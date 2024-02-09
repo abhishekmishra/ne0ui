@@ -210,17 +210,22 @@ export class NuFont {
     size;
     unit;
 
-    constructor(family = 'monospace', style = 'normal', size = 12, unit = 'px') {
+    constructor(family = 'monospace', style = 'normal', size = 12, unit = 'px', weight = 0) {
         this.family = family;
         this.style = style;
         this.size = size;
         this.unit = unit;
+        this.weight = weight;
     }
 
     applyStyle(uielem) {
         setElemStyle(uielem, 'font-family', this.family);
         setElemStyle(uielem, 'font-style', this.style);
         setElemStyle(uielem, 'font-size', `${this.size}${this.unit}`);
+        if(weight !== 0)
+        {
+            setElemStyle(uielem, 'font-weight', this.weight);
+        }
     }
 
     static parse(input) {
