@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "A UI Frame for browser-based applications.",
   "main": "index.mjs",
-  "types": "types/index.d.ts",
+  "types": "types/index.d.mts",
   "scripts": {
     "test": "mocha",
     "doc": "jsdoc -r --readme ./README.md -c jsdoc.conf src/"

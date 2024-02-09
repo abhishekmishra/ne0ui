@@ -5,6 +5,6 @@
       "emitDeclarationOnly": true,
       "outDir": "./types"
     },
-    "include": ["src/**/*"],
+    "include": ["src/**/*", "index.mjs"],
     "exclude": ["node_modules"]
   }
