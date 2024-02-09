@@ -1,7 +1,14 @@
-import { NuTop, NuSingleLineText, NuButton, NuDialog } from "../../index.mjs";
+import { NuTop, NuSingleLineText, NuButton, NuDialog, NuAppWindow, NuSizeHint } from "../../index.mjs";
 
 // create the toplevel window
 const top = new NuTop();
+
+const app = new NuAppWindow({
+    w: new NuSizeHint(200, 200, Infinity),
+    h: new NuSizeHint(100, 100, Infinity)
+});
+
+top.add(app);
 
 const dialog = new NuDialog();
 dialog.getTop().add(new NuSingleLineText({
@@ -25,4 +32,4 @@ showDialogBtn.on('click', (evt) => {
     dialog.dialogElem.showModal();
 });
 
-top.add(showDialogBtn);
+app.addComp(showDialogBtn);

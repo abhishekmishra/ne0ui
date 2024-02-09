@@ -1,4 +1,4 @@
-import { NuTop, NuSingleLineText } from "../../index.mjs";
+import { NuTop, NuSingleLineText, NuAppWindow } from "../../index.mjs";
 import { NuSizeHint } from "../../index.mjs";
 import { NuBorder } from "../../index.mjs";
 import { NuColumnPanel, NuRowPanel } from "../../index.mjs";
@@ -9,9 +9,9 @@ import { NuColumnPanel, NuRowPanel } from "../../index.mjs";
 var top = new NuTop();
 
 // create a new panel
-var panel = new NuColumnPanel({
-    'w': new NuSizeHint(600, 600, Infinity),
-    'h': 400,
+var panel = new NuAppWindow({
+    'w': new NuSizeHint(400, 400, Infinity),
+    'h': new NuSizeHint(200, 200, Infinity),
     'margin': '10px',
     // 'border': '2px solid black',
     'border': new NuBorder(2, 'black', 'solid'),
@@ -51,7 +51,7 @@ for (var i = 0; i < 3; i++) {
 
 
 // create 5 single line text and add to the panel
-for (var i = 0; i < 5; i++) {
+for (var i = 0; i < 3; i++) {
     // create and add a single line text control to the toplevel
     var text = new NuSingleLineText({
         w: new NuSizeHint(100, 50, Infinity),
@@ -65,3 +65,4 @@ for (var i = 0; i < 5; i++) {
     });
     panel.addComp(text);
 }
+

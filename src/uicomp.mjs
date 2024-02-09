@@ -1,4 +1,4 @@
-import { NuColumnContainer, NuRect, NuRowContainer } from './containers.mjs';
+import { NuColumnContainer, NuRect, NuRowContainer, NuTop } from './containers.mjs';
 import { NuFont, NuBorder, NuMargin, setElemStyle, NuPadding } from './uicommon.mjs';
 
 /**
@@ -859,5 +859,60 @@ export class NuWindow extends NuFrame {
 
     addComp(comp, side = 'begin') {
         this.layout.addComp(comp, side);
+    }
+}
+
+/**
+ * A Tree-view panel to show a tree of items.
+ */
+export class NuTreeView extends NuUIComponent {
+    constructor(config) {
+        super('ul', config);
+        this.addElemClass('tree-view');
+    }
+
+    setDefaultConfigs() {
+        super.setDefaultConfigs();
+        this.uicfg.setDefaults({
+            // margin: '3px',
+            padding: '6px',
+        });
+    }
+
+    addItem(item) {
+        this.elem.appendChild(item.elem);
+    }
+}
+
+/**
+ * An item for the tree view.
+ */
+export class NuTreeItem {
+    elem;
+
+    constructor(config) {
+        this.elem = document.createElement('li');
+        this.elem.innerHTML = config.text;
+        this.elem.style.cursor = 'pointer';
+    }
+
+    on(event, handler) {
+        this.elem.addEventListener(event, handler);
+    }
+
+    removeEventListener(event, handler) {
+        this.elem.removeEventListener(event, handler);
+    }
+
+}
+
+
+/**
+ * App Window with a Top window.
+ */
+export class NuAppWindow extends NuColumnPanel {
+    constructor(config) {
+        super(config);
+        this.addClass('window-body');
     }
 }

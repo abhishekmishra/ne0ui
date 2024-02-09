@@ -801,10 +801,11 @@ export class NuTop extends NuColumnContainer {
                 font: new NuFont('Times New Roman', 'normal', 12),
             }
         };
+
+        // for the 98.css
+        this.addClass('window');
     }
 }
-
-
 
 /**
  * A Dialog class, which can be shown and hidden.
