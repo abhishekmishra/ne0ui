@@ -222,6 +222,14 @@ export class NuTop extends NuColumnContainer {
     constructor();
 }
 /**
+ * A Dialog class, which can be shown and hidden.
+ */
+export class NuDialog {
+    dialogElem: HTMLDialogElement;
+    dialogTop: NuColumnContainer;
+    getTop(): NuColumnContainer;
+}
+/**
  * <p>
  * This is the parent class of Row/Column container classes and implements
  * some common logic for a container that allows adding other components
