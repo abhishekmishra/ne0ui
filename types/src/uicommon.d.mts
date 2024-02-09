@@ -40,10 +40,11 @@ export class NuPadding extends NuSides {
 }
 export class NuFont {
     static parse(input: any): NuFont;
-    constructor(family?: string, style?: string, size?: number, unit?: string);
+    constructor(family?: string, style?: string, size?: number, unit?: string, weight?: number);
     family: string;
     style: string;
     size: number;
     unit: string;
+    weight: number;
     applyStyle(uielem: any): void;
 }
