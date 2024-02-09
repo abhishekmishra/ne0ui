@@ -346,7 +346,7 @@ export class NuRect {
     }
 
     toggleVisible() {
-        if(this.isHidden()) {
+        if (this.isHidden()) {
             this.show();
         } else {
             this.hide();
@@ -723,7 +723,7 @@ export class NuRowContainer extends DirectionalContainer {
             // console.log(`scroll is enabled so returning ${this.getWidthHint().max}`);
             return this.getWidthHint().max;
         }
-        
+
         return this.getWidth();
     }
 
@@ -804,3 +804,30 @@ export class NuTop extends NuColumnContainer {
     }
 }
 
+
+
+/**
+ * A Dialog class, which can be shown and hidden.
+ */
+export class NuDialog {
+    dialogElem;
+    dialogTop; //top level container for any dialog elements
+
+    constructor() {
+        // create a dialog element for the container
+        this.dialogElem = document.createElement('dialog');
+
+        // add the dialog to the document
+        document.body.appendChild(this.dialogElem);
+
+        // create a top level container for the dialog elements
+        this.dialogTop = new NuColumnContainer(new NuSizeHint(300, 300, Infinity), new NuSizeHint(300, 300, Infinity));
+
+        // add the top level container to the dialog
+        this.dialogElem.appendChild(this.dialogTop.div);
+    }
+
+    getTop() {
+        return this.dialogTop;
+    }
+}

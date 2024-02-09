@@ -44,6 +44,11 @@
             "name": "fontsettings",
             "title": "Font Settings",
             "description": "Setting border, margin and padding of ui compoments."
+        },
+        {
+            "name": "dialog",
+            "title": "Simple Dialog",
+            "description": "Show a simple modal dialog with a few inputs and buttons."
         }
     ]
 }
