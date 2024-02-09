@@ -861,12 +861,3 @@ export class NuWindow extends NuFrame {
         this.layout.addComp(comp, side);
     }
 }
-
-/**
- * A Dialog class, which can be shown and hidden.
- */
-export class NuDialog extends NuUIComponent {
-    constructor(config) {
-        super('dialog', config);
-    }
-}

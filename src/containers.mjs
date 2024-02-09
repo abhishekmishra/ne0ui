@@ -803,3 +803,21 @@ export class NuTop extends NuColumnContainer {
         };
     }
 }
+
+
+/**
+ * A Dialog class, which can be shown and hidden.
+ */
+export class NuDialog extends NuUIComponent {
+    constructor(config) {
+        super('dialog', config);
+
+        document.body.appendChild(this.div);
+
+        document.body.onresize = (event) => {
+            this.resize(window.innerWidth, window.innerHeight);
+        };
+
+        this.isHidden();
+    }
+}
