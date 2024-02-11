@@ -5,6 +5,7 @@
   "main": "index.mjs",
   "types": "types/index.d.mts",
   "scripts": {
+    "start": "npx http-server .",
     "test": "mocha",
     "doc": "jsdoc -r --readme ./README.md -c jsdoc.conf src/",
     "format": "prettier --write ./src/*.mjs",
