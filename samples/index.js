@@ -1,69 +1,82 @@
-import { NuTop, NuColumnPanel, NuSizeHint, NuBorder, NuSingleLineText, NuFont, NuRowPanel, NuText, NuPreformattedText, NuTreeView, NuTreeItem, NuAppWindow } from "../index.mjs";
-import { NuIFrame } from "../index.mjs";
+import {
+  NuTop,
+  NuColumnPanel,
+  NuSizeHint,
+  NuBorder,
+  NuSingleLineText,
+  NuFont,
+  NuRowPanel,
+  NuText,
+  NuPreformattedText,
+  NuTreeView,
+  NuTreeItem,
+  NuAppWindow,
+} from '../index.mjs';
+import { NuIFrame } from '../index.mjs';
 
 class SamplesApp extends NuAppWindow {
-    constructor() {
-        super({
-            w: new NuSizeHint(400, 120, Infinity),
-            h: new NuSizeHint(300, 120, Infinity),
-        });
-    }
+  constructor() {
+    super({
+      w: new NuSizeHint(400, 120, Infinity),
+      h: new NuSizeHint(300, 120, Infinity),
+    });
+  }
 }
 
 class SampleDisplayPanel extends NuColumnPanel {
-    titleBar;
-    displayIframe;
-    codeText;
+  titleBar;
+  displayIframe;
+  codeText;
 
-    constructor() {
-        const widthHint = new NuSizeHint(600, 600, Infinity);
-        super({
-            'w': widthHint,
-            'h': new NuSizeHint(600, 600, Infinity),
-            // 'margin': '2px',
-        });
+  constructor() {
+    const widthHint = new NuSizeHint(600, 600, Infinity);
+    super({
+      w: widthHint,
+      h: new NuSizeHint(600, 600, Infinity),
+      // 'margin': '2px',
+    });
 
-        this.addClass('window-body');
+    this.addClass('window-body');
 
-        this.titleBar = new NuText({
-            'w': widthHint,
-            'h': 20,
-            'text': 'Sample display: ...',
-            'font': new NuFont('inherit', 'bold', '1.2', 'em'),
-            'justify': 'center',
-            // 'bg': 'whitesmoke'
-        });
+    this.titleBar = new NuText({
+      w: widthHint,
+      h: 20,
+      text: 'Sample display: ...',
+      font: new NuFont('inherit', 'bold', '1.2', 'em'),
+      justify: 'center',
+      // 'bg': 'whitesmoke'
+    });
 
-        this.titleBar.addClass('title-bar');
+    this.titleBar.addClass('title-bar');
 
-        this.displayIframe = new NuIFrame({
-            'w': new NuSizeHint(600, 600, Infinity),
-            'h': new NuSizeHint(300, 300, Infinity),
-            'src': 'helloworld',
-            'border': new NuBorder(0),
-            'bg': 'whitesmoke'
-        });
+    this.displayIframe = new NuIFrame({
+      w: new NuSizeHint(600, 600, Infinity),
+      h: new NuSizeHint(300, 300, Infinity),
+      src: 'helloworld',
+      border: new NuBorder(0),
+      bg: 'whitesmoke',
+    });
 
-        this.codeText = new NuIFrame({
-            'w': new NuSizeHint(600, 600, Infinity),
-            'h': new NuSizeHint(200, 200, Infinity),
-            'border': new NuBorder(0),
-            'bg': 'PapayaWhip',
-            'src': 'helloworld/app.js',
-        });
+    this.codeText = new NuIFrame({
+      w: new NuSizeHint(600, 600, Infinity),
+      h: new NuSizeHint(200, 200, Infinity),
+      border: new NuBorder(0),
+      bg: 'PapayaWhip',
+      src: 'helloworld/app.js',
+    });
 
-        this.addComp(this.titleBar);
-        this.addComp(this.displayIframe);
-        this.addComp(this.codeText);
-    }
+    this.addComp(this.titleBar);
+    this.addComp(this.displayIframe);
+    this.addComp(this.codeText);
+  }
 
-    showSample(sample) {
-        this.titleBar.setText('<div class="title-bar-text">Sample: '
-            + sample.title
-            + '</div>');
-        this.displayIframe.setSrc(sample.name);
-        this.codeText.setSrc(sample.name + '/app.js');
-    }
+  showSample(sample) {
+    this.titleBar.setText(
+      '<div class="title-bar-text">Sample: ' + sample.title + '</div>'
+    );
+    this.displayIframe.setSrc(sample.name);
+    this.codeText.setSrc(sample.name + '/app.js');
+  }
 }
 
 // class SamplePanel extends NuColumnPanel {
@@ -113,23 +126,23 @@ class SampleDisplayPanel extends NuColumnPanel {
 const top = new NuTop();
 
 const samplesApp = new SamplesApp({
-    'w': new NuSizeHint(600, 600, Infinity),
-    'h': new NuSizeHint(500, 500, Infinity),
+  w: new NuSizeHint(600, 600, Infinity),
+  h: new NuSizeHint(500, 500, Infinity),
 });
 
 top.add(samplesApp);
 
 let topPanel = new NuRowPanel({
-    'w': new NuSizeHint(600, 600, Infinity),
-    'h': new NuSizeHint(500, 500, Infinity),
+  w: new NuSizeHint(600, 600, Infinity),
+  h: new NuSizeHint(500, 500, Infinity),
 });
 
 samplesApp.addComp(topPanel);
 
 var sampleListPanel = new NuTreeView({
-    'w': new NuSizeHint(250, 250, Infinity),
-    'h': new NuSizeHint(500, 500, Infinity),
-    'scrollable': 'true'
+  w: new NuSizeHint(250, 250, Infinity),
+  h: new NuSizeHint(500, 500, Infinity),
+  scrollable: 'true',
 });
 
 topPanel.addComp(sampleListPanel);
@@ -137,38 +150,37 @@ topPanel.addComp(sampleListPanel);
 let sampleFrame = new SampleDisplayPanel();
 topPanel.addComp(sampleFrame);
 
-let titleFont = new NuFont('sans-serif', 'bold', '2', 'em')
+let titleFont = new NuFont('sans-serif', 'bold', '2', 'em');
 let descFont = new NuFont('serif', 'normal', '1.4', 'em');
 
 fetch('./samples.json', {
-    method: 'GET',
-    headers: {
-        'Accept': 'application/json',
-    },
+  method: 'GET',
+  headers: {
+    Accept: 'application/json',
+  },
 })
-    .then(response => response.json())
-    .then(response => {
-        for (let sampleId in response.samples) {
-            const sample = response.samples[sampleId];
-            sample.index = sampleId;
-            // console.log(sample);
+  .then((response) => response.json())
+  .then((response) => {
+    for (let sampleId in response.samples) {
+      const sample = response.samples[sampleId];
+      sample.index = sampleId;
+      // console.log(sample);
 
-            if (sampleId == 0) {
-                sampleFrame.showSample(sample);
-            }
-            // create a new panel
-            var samplePanel = new NuTreeItem({
-                w: new NuSizeHint(250, 250, Infinity),
-                h: 32,
-                text: sample.title
-            });
+      if (sampleId == 0) {
+        sampleFrame.showSample(sample);
+      }
+      // create a new panel
+      var samplePanel = new NuTreeItem({
+        w: new NuSizeHint(250, 250, Infinity),
+        h: 32,
+        text: sample.title,
+      });
 
-            sampleListPanel.addItem(samplePanel);
+      sampleListPanel.addItem(samplePanel);
 
-            samplePanel.on('click', () => {
-                // console.log('to load ' + sample.name);
-                sampleFrame.showSample(sample);
-            });
-
-        }
-    });
+      samplePanel.on('click', () => {
+        // console.log('to load ' + sample.name);
+        sampleFrame.showSample(sample);
+      });
+    }
+  });

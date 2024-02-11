@@ -3,15 +3,17 @@ const fs = require('fs');
 const args = process.argv;
 
 function usage() {
-    console.log('Usage:');
-    console.log('node _new_sample.js <sample name>: create a new samples folder.');
-    console.log('(just a copy of the helloworld sample with given name)');
+  console.log('Usage:');
+  console.log(
+    'node _new_sample.js <sample name>: create a new samples folder.'
+  );
+  console.log('(just a copy of the helloworld sample with given name)');
 }
 
-if(args.length < 3) {
-    console.error("Error: insufficient args\n");
-    usage();
-    process.exit(1);
+if (args.length < 3) {
+  console.error('Error: insufficient args\n');
+  usage();
+  process.exit(1);
 }
 
 let sampleName = args[2];

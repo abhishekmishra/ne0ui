@@ -5,8 +5,8 @@ const should = chai.should();
 
 import { allocateSizes, NuSizeHint } from '../index.mjs';
 
-describe('DimHint', function() {
-  it('create and test ok', function() {
+describe('DimHint', function () {
+  it('create and test ok', function () {
     const dh = new NuSizeHint(100, 0, Infinity);
     should.exist(dh);
     dh.should.be.an('object');
@@ -94,5 +94,4 @@ describe('allocateSizes()', function () {
     assert.equal(sz[1], 35);
     assert.equal(sz[2], 45);
   });
-
 });

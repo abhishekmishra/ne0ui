@@ -12,19 +12,19 @@
  * </p>
  */
 export class NuText extends NuUIComponent {
-    /**
-     * Creates a new UI component based on a span element.
-     *
-     * @param {NuUICompConfig} config config for the text component
-     */
-    constructor(config: NuUICompConfig);
-    setText(text: any): void;
+  /**
+   * Creates a new UI component based on a span element.
+   *
+   * @param {NuUICompConfig} config config for the text component
+   */
+  constructor(config: NuUICompConfig);
+  setText(text: any): void;
 }
 /**
  * UI component to show a single line of text.
  */
 export class NuSingleLineText extends NuText {
-    constructor(config: any);
+  constructor(config: any);
 }
 /**
  * <p>
@@ -33,13 +33,13 @@ export class NuSingleLineText extends NuText {
  * </p>
  */
 export class NuPreformattedText extends NuUIComponent {
-    /**
-     * Creates a new UI component based on a span element.
-     *
-     * @param {NuUICompConfig} config config for the text component
-     */
-    constructor(config: NuUICompConfig);
-    setText(text: any): void;
+  /**
+   * Creates a new UI component based on a span element.
+   *
+   * @param {NuUICompConfig} config config for the text component
+   */
+  constructor(config: NuUICompConfig);
+  setText(text: any): void;
 }
-import { NuUIComponent } from "./uicomp.mjs";
-import { NuUICompConfig } from "./uicomp.mjs";
+import { NuUIComponent } from './uicomp.mjs';
+import { NuUICompConfig } from './uicomp.mjs';
