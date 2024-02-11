@@ -1,7 +1,9 @@
 /**
- * @fileoverview This module defines the NuRect class, which is the base container class in the NE0UI API.
- * It represents an empty rectangular region on the screen, backed by an HTML div. It also manages the
- * dimensions and parent-child relationships of these regions.
+ * @fileoverview This module defines the NuRect class, which is the base 
+ * container class in the NE0UI API.
+ * It represents an empty rectangular region on the screen, backed by an HTML 
+ * div. It also manages the * dimensions and parent-child relationships of 
+ * these regions.
  */
 
 import { NuSizeHint, getSizeHint } from './sizehint.mjs';
