@@ -7,7 +7,8 @@
   "scripts": {
     "test": "mocha",
     "doc": "jsdoc -r --readme ./README.md -c jsdoc.conf src/",
-    "format": "prettier --write ./src/*.mjs"
+    "format": "prettier --write ./src/*.mjs",
+    "types": "npx tsc"
   },
   "repository": {
     "type": "git",
