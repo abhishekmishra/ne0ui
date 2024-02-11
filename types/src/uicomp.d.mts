@@ -274,6 +274,12 @@ export class NuTreeItem {
  */
 export class NuAppWindow extends NuColumnPanel {
 }
+/**
+ * Table component to show data in a table.
+ */
+export class NuTable extends NuUIComponent {
+    setTableData(data: any): void;
+}
 import { NuRect } from './containers.mjs';
 import { NuColumnContainer } from './containers.mjs';
 import { NuRowContainer } from './containers.mjs';
