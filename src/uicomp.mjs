@@ -916,3 +916,35 @@ export class NuAppWindow extends NuColumnPanel {
         this.addClass('window-body');
     }
 }
+
+/**
+ * Table component to show data in a table.
+ */
+export class NuTable extends NuUIComponent {
+    constructor(config, data) {
+        super('table', config);
+        this.addElemClass('sunken-panel');
+        this.setTableData(data);
+    }
+
+    setTableData(data) {
+        this.elem.innerHTML = '';
+        for (var i = 0; i < data.length; i++) {
+            var row;
+            if(i === 0) {
+                console.log('header');
+                row = this.elem.createTHead().insertRow(-1);
+            } else if (i === 1) {
+                console.log('body');
+                row = this.elem.createTBody().insertRow(-1);
+            } else {
+                row = this.elem.insertRow(-1);
+            }
+            for (var j = 0; j < data[i].length; j++) {
+                var cell = row.insertCell(-1);
+                cell.innerHTML = data[i][j];
+            }
+        }
+    }
+
+}

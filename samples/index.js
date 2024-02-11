@@ -151,7 +151,7 @@ fetch('./samples.json', {
         for (let sampleId in response.samples) {
             const sample = response.samples[sampleId];
             sample.index = sampleId;
-            console.log(sample);
+            // console.log(sample);
 
             if (sampleId == 0) {
                 sampleFrame.showSample(sample);
@@ -166,7 +166,7 @@ fetch('./samples.json', {
             sampleListPanel.addItem(samplePanel);
 
             samplePanel.on('click', () => {
-                console.log('to load ' + sample.name);
+                // console.log('to load ' + sample.name);
                 sampleFrame.showSample(sample);
             });
 
