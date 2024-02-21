@@ -711,6 +711,27 @@ export class NuInput extends NuUIComponent {
   }
 }
 
+export class NuRadio extends NuInput {
+  constructor(config) {
+    super(config);
+    this.elem.setAttribute('type', 'radio');
+  }
+
+  setDefaultConfigs() {
+    super.setDefaultConfigs();
+    this.uicfg.setDefaults({
+      value: 'none',
+      name: 'None',
+    });
+  }
+
+  applyConfig() {
+    super.applyConfig();
+    this.elem.setAttribute('value', this.getCfg('value'));
+    this.elem.setAttribute('name', this.getCfg('name'));
+  }
+}
+
 /**
  * Create an html label for an input.
  * Config must contain the "label" and "labelFor"
@@ -799,6 +820,51 @@ export class NuInputPanel extends NuPanel {
 
   applyConfig() {
     super.applyConfig();
+  }
+}
+
+/**
+ * Create an radio input panel with a label.
+ */
+export class NuRadioPanel extends NuPanel {
+  labelComps;
+  radioComps;
+  radioName;
+
+  constructor(config) {
+    super(config);
+    this.radioName = config.radioName;
+
+    this.addClass('field-row');
+
+    this.radioComps = [];
+    this.labelComps = [];
+    for (let i = 0; i < config.items.length; i++) {
+      
+      let radio = new NuRadio({
+        name: this.radioName,
+        value: config.items[i].value,
+        w: config.radioWidth,
+        h: config.radioHeight,
+      });
+
+      let label = new NuLabel({
+        label: config.items[i].label,
+        labelFor: this.radioName,
+        w: config.labelWidth,
+        h: config.labelHeight,
+        labelFor: radio.elem.id
+      });
+
+      if (config.items[i].checked) {
+        radio.getElem().setAttribute('checked', true);
+      }
+
+      this.labelComps.push(label);
+      this.radioComps.push(radio);
+      this.addComp(radio);
+      this.addComp(label);
+    }
   }
 }
 

@@ -54,6 +54,11 @@
       "name": "tablesimple",
       "title": "Simple Table",
       "description": "Show a simple table."
+    },
+    {
+      "name": "radiobuttons",
+      "title": "Radio Buttons",
+      "description": "Show a set of radio buttons."
     }
   ]
 }
