@@ -59,6 +59,11 @@
       "name": "radiobuttons",
       "title": "Radio Buttons",
       "description": "Show a set of radio buttons."
+    },
+    {
+      "name": "canvas",
+      "title": "HTML5 Canvas",
+      "description": "Show a canvas."
     }
   ]
 }
