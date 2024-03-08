@@ -557,6 +557,11 @@ export class NuButton extends NuUIComponent {
   mouseOut() {
     this.unsetElemStyle('cursor');
   }
+
+  setText(text) {
+    this.setCfg('text', text);
+    this.applyConfig();
+  }
 }
 
 /**

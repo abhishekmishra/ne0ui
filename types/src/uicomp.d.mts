@@ -108,6 +108,7 @@ export class NuButton extends NuUIComponent {
     isDisabled(): any;
     mouseOver(): void;
     mouseOut(): void;
+    setText(text: any): void;
 }
 /**
  * A ui component to hold a canvas component.
