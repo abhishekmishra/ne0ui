@@ -212,19 +212,22 @@ export class NuFont {
   style;
   size;
   unit;
+  variant; // can be normal, small-caps, initial, inherit
 
   constructor(
     family = 'monospace',
     style = 'normal',
     size = 12,
     unit = 'px',
-    weight = 0
+    weight = 0,
+    variant = 'normal'
   ) {
     this.family = family;
     this.style = style;
     this.size = size;
     this.unit = unit;
     this.weight = weight;
+    this.variant = variant;
   }
 
   applyStyle(uielem) {
@@ -234,6 +237,7 @@ export class NuFont {
     if (this.weight !== 0) {
       setElemStyle(uielem, 'font-weight', this.weight);
     }
+    setElemStyle(uielem, 'font-variant', this.variant);
   }
 
   static parse(input) {
