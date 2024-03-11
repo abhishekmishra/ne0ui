@@ -878,4 +878,20 @@ export class NuDialog {
     getTop() {
         return this.dialogTop;
     }
+
+    showModal() {
+        this.dialogElem.showModal();
+    }
+
+    show() {
+        this.dialogElem.show();
+    }
+
+    close() {
+        this.dialogElem.close();
+    }
+
+    add(comp, side) {
+        this.dialogTop.add(comp, side);
+    }
 }
