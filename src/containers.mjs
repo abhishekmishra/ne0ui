@@ -500,6 +500,11 @@ class DirectionalContainer extends NuRect {
         }
     }
 
+    /** Get all items */
+    getItems() {
+        return this.beginItems.concat(this.endItems);
+    }
+
     addBegin(rect) {
         if (this.spaceAvailableFor(rect)) {
             this.beginItems.push(rect);
