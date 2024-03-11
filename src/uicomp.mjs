@@ -431,6 +431,9 @@ export class NuPanel extends NuUIComponent {
       this.layout.resize(this.getInnerWidth(), this.getInnerHeight());
     }
 
+    // set the cursor to default
+    this.setElemStyle('cursor', 'default');
+
     // if (scrollable) {
     //     if (orientation === 'horizontal') {
     //         this.setElemStyle('overflow-y', 'visible');
