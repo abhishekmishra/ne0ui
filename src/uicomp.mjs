@@ -642,7 +642,11 @@ export class NuFrame extends NuUIComponent {
     const border = this.overBorder(pt);
     if (border !== null) {
       // console.log(`${pt} is over border`);
-      this.setElemStyle('cursor', 'e-resize');
+      // TODO: disable the cursor change for now
+      // as it is not working properly,
+      // it shows up even when not over the border
+      // this.setElemStyle('cursor', 'e-resize');
+      this.unsetElemStyle('cursor');
     } else {
       this.unsetElemStyle('cursor');
     }
