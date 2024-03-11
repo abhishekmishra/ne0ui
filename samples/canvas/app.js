@@ -1,18 +1,18 @@
-import { NuTop, NuSingleLineText, NuCanvas, NuSizeHint } from '../../index.mjs';
+import { NuTop, NuSingleLineText, NuCanvas, NuSizeHint } from "../../index.mjs";
 
 // create the toplevel window
 let top = new NuTop();
 
 class MyCanvas extends NuCanvas {
-  constructor(cfg) {
-    super(cfg);
-  }
+    constructor(cfg) {
+        super(cfg);
+    }
 }
 
 // create the canvas
 let canvasComp = new MyCanvas({
-  w: new NuSizeHint(100, 100, 200),
-  h: new NuSizeHint(100, 100, 200),
+    w: new NuSizeHint(100, 100, 200),
+    h: new NuSizeHint(100, 100, 200),
 });
 
 const canvas = canvasComp.getElem();

@@ -1,0 +1,13 @@
+assets/
+
+# Ignore all HTML files:
+**/*.html
+
+# Ignore all CSS files:
+**/*.css
+
+# Ignore all markdown files:
+**/*.md
+
+jsdoc.conf
+package*.json
