@@ -341,7 +341,7 @@ export class NuRect {
         this.div.appendChild(elem);
     }
 
-    removeElem(rect) {
+    removeElem(elem) {
         this.div.removeChild(elem);
     }
 
