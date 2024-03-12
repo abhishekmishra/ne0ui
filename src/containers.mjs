@@ -866,6 +866,9 @@ export class NuDialog {
         document.body.appendChild(this.dialogElem);
 
         // create a top level container for the dialog elements
+        // TODO: find a way to use the NuColumnPanel here (currently this
+        // is not possible because of the circular dependency between the two
+        // files)
         this.dialogTop = new NuColumnContainer(
             new NuSizeHint(300, 300, Infinity),
             new NuSizeHint(300, 300, Infinity),
@@ -873,6 +876,15 @@ export class NuDialog {
 
         // add the top level container to the dialog
         this.dialogElem.appendChild(this.dialogTop.div);
+
+        // set the position of the top level container to relative
+        // this will not be needed if the top level container is a
+        // NuColumnPanel
+        this.dialogTop.setStyle("position", "relative");
+
+        this.dialogElem.onresize = (event) => {
+            this.dialogTop.resize(window.innerWidth, window.innerHeight);
+        };
     }
 
     getTop() {
