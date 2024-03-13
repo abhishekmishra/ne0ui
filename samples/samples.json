@@ -64,6 +64,11 @@
       "name": "canvas",
       "title": "HTML5 Canvas",
       "description": "Show a canvas."
+    },
+    {
+      "name": "tooltip",
+      "title": "Simple Tooltip",
+      "description": "Show a tooltip for a textbox when the mouse is over the it."
     }
   ]
 }

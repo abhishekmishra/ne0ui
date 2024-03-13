@@ -2,6 +2,7 @@ import {
     NuColumnContainer,
     NuRect,
     NuRowContainer,
+    NuTooltip,
     NuTop,
 } from "./containers.mjs";
 import {
@@ -87,6 +88,7 @@ export class NuUICompConfig {
 export class NuUIComponent extends NuRect {
     elem;
     uicfg;
+    _tooltip;
 
     constructor(e, config) {
         //create the config object from provided
@@ -116,6 +118,9 @@ export class NuUIComponent extends NuRect {
 
         // add the css class <constructor-name>_elem all in lowercase
         this.addElemClass(`${this.constructor.name.toLowerCase()}_elem`);
+
+        // create the tooltip
+        this._tooltip = new NuTooltip(this);
 
         //set the config object
         this.uicfg = cfg;
@@ -171,6 +176,19 @@ export class NuUIComponent extends NuRect {
                 this.mouseOut(evt);
             });
         }
+
+        // Default mouse over and mouse out handlers for tooltip
+        this.on("mouseover", (evt) => {
+            // show the tooltip if tooltip text is set
+            if (this._tooltip.getText() !== "") {
+                this._tooltip.show();
+            }
+        });
+
+        this.on("mouseout", (evt) => {
+            // hide the tooltip
+            this._tooltip.hide();
+        });
     }
 
     getCfg(k) {
@@ -188,6 +206,7 @@ export class NuUIComponent extends NuRect {
             padding: "0px",
             border: new NuBorder(),
             font: nu.config.font,
+            tooltipText: "",
         });
     }
 
@@ -202,6 +221,7 @@ export class NuUIComponent extends NuRect {
         font.applyStyle(this.elem);
         this.setElemStyle("background-color", this.getCfg("bg"));
         this.setElemStyle("color", this.getCfg("fg"));
+        this._tooltip.setText(this.getCfg("tooltipText"));
     }
 
     setElem(e) {

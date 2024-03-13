@@ -907,3 +907,79 @@ export class NuDialog {
         this.dialogTop.add(comp, side);
     }
 }
+
+/**
+ * A Tooltip class, which can be shown and hidden.
+ */
+export class NuTooltip {
+    tooltipElem;
+
+    constructor(parentRect) {
+        // create a tooltip element for the container
+        this.tooltipElem = document.createElement("div");
+
+        // set width and height of the tooltip
+        this.tooltipElem.style.width = "100px";
+        this.tooltipElem.style.height = "16px";
+        // set the background color of the tooltip
+        this.tooltipElem.style.backgroundColor = "wheat";
+        // set the border of the tooltip
+        this.tooltipElem.style.border = "1px solid brown";
+        // text align and justify in the center
+        this.tooltipElem.style.textAlign = "center";
+        this.tooltipElem.style.justifyContent = "center";
+        // padding 2px
+        this.tooltipElem.style.padding = "2px";
+        this.tooltipElem.style.marginLeft = "50px";
+        // font size 12px
+        this.tooltipElem.style.fontSize = "12px";
+
+        // if the parent rectangle is provided, set the position of the tooltip
+        // to absolute
+        if (parentRect !== undefined) {
+            this.tooltipElem.style.position = "absolute";
+            // display inline-block
+            this.tooltipElem.style.display = "inline-block";
+        }
+
+        // add the tooltip to the parent rectangle if provided, otherwise add
+        // it to the document
+        if (parentRect !== undefined) {
+            parentRect.appendElem(this.tooltipElem);
+        } else {
+            document.body.appendChild(this.tooltipElem);
+        }
+
+        // hide it by default
+        this.hide();
+    }
+
+    setPosition(x, y) {
+        this.tooltipElem.style.top = x + "px";
+        this.tooltipElem.style.left = y + "px";
+    }
+
+    show() {
+        this.tooltipElem.style.display = "block";
+    }
+
+    hide() {
+        this.tooltipElem.style.display = "none";
+    }
+
+    toggle() {
+        if (this.tooltipElem.style.display === "none") {
+            this.show();
+        } else {
+            this.hide();
+        }
+    }
+
+    setText(text) {
+        this.tooltipElem.innerHTML = text;
+    }
+
+    getText() {
+        return this.tooltipElem.innerHTML;
+    }
+}
